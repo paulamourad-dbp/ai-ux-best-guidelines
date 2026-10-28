@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 12 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{border-radius:14px;padding:9px 13px;font-size:14px;margin:6px 0;max-width:85%;width:fit-content;border:1px solid var(--line);background:var(--card)}
+.bubble.user{background:var(--brand);color:#fff;border-color:transparent;margin-left:auto}
+.bubble.err{background:var(--bad-soft);border-color:transparent}
+.bubble.ok{background:var(--good-soft);border-color:transparent}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.ba{grid-template-columns:1fr}}
+.chat{min-height:220px}
+.inputrow{display:flex;gap:8px;margin-top:8px}
+.inputrow input{flex:1;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 10px;font:inherit;font-size:14px}
+.quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:4px 11px;border-radius:99px;font:inherit;font-size:12px;cursor:pointer}
+.mem{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.mem span{background:var(--warn-soft);border:1px solid var(--line);border-radius:8px;padding:3px 9px;font-size:12px}
+.timeline{display:flex;gap:6px;align-items:center;margin-top:12px;font-size:12px;color:var(--muted)}
+.timeline .t{flex:1;height:10px;border-radius:99px;background:linear-gradient(90deg,var(--line),var(--good))}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 12 · "Over time"</span>
+<h1>Remember recent interactions</h1>
+<p class="lead">Keep a short-term memory so people can say "him", "that", or "again", and the AI knows what they mean.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">Maintain <b>short-term memory</b> and let users make <b>efficient references</b> to it. Carry state between interactions to give a sense of <b>continuity</b>.</p>
+  <p class="small">Example from the page: someone expects a voice assistant to keep a conversation going, and gets frustrated if it treats every sentence on its own.</p>
+</div>
+
+<h2>The page's example, side by side</h2>
+<div class="card">
+  <div class="ba">
+    <div>
+      <span class="pill bad">No short-term memory</span>
+      <div class="mock">
+        <div class="bubble user">Who called?</div>
+        <div class="bubble">Eric H.</div>
+        <div class="bubble user">Call him back.</div>
+        <div class="bubble err">Whom should I call?</div>
+      </div>
+      <p class="hint">Each sentence is handled alone, so "him" means nothing.</p>
+    </div>
+    <div>
+      <span class="pill good">Remembers recent turns</span>
+      <div class="mock">
+        <div class="bubble user">Who called?</div>
+        <div class="bubble">Eric H.</div>
+        <div class="bubble user">Call him back.</div>
+        <div class="bubble ok">Calling Eric H.…</div>
+      </div>
+      <p class="hint">"Him" resolves to the last person mentioned.</p>
+    </div>
+  </div>
+  <p class="hint">These two conversations are the dialogue given on the page.</p>
+</div>
+
+<h2>Try it: talk to an assistant with (or without) memory</h2>
+<div class="card">
+  <p class="small">A toy assistant that answers a few follow-ups. Toggle memory on and off and ask the same thing.</p>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <label class="small"><input type="checkbox" id="memOn" checked> Short-term memory on</label>
+    <button class="btn ghost" id="clear">↻ Clear chat</button>
+  </div>
+  <div class="mock chat" id="chat"></div>
+  <div class="mem" id="memView"></div>
+  <div class="quick" id="quick"></div>
+  <div class="inputrow"><input id="inp" placeholder="Try: Who called?  →  Call him back"><button class="btn" id="send">Send</button></div>
+  <p class="hint">Toy script with only a handful of phrases. Not a real language model.</p>
+</div>
+
+<h2>What "recent memory" can include</h2>
+<p class="small">The page gives one example. These are my own suggestions for what short-term memory might hold.</p>
+<div class="cols">
+  <div class="card"><div style="font-size:26px">👤</div><p class="big">Who or what was just discussed</p><p class="small">So "him", "her", "it" and "that one" work.</p></div>
+  <div class="card"><div style="font-size:26px">🔍</div><p class="big">The last request</p><p class="small">So "now do the same for Friday" or "make it shorter" works.</p></div>
+  <div class="card"><div style="font-size:26px">⚙️</div><p class="big">Current settings</p><p class="small">Filters, units or tone chosen a moment ago stay applied.</p></div>
+</div>
+
+<h2>Examples sketched</h2>
+<p class="small">The page links examples from Business Chat, Outlook, Siri and Bing Search. I didn't open them. These are my own sketches of the same idea.</p>
+<div class="grid g2">
+  <div class="card">
+    <p class="big">🔎 Search follow-ups</p>
+    <div class="mock">
+      <div class="bubble user">Best hikes near Lisbon</div>
+      <div class="bubble user">Which are dog-friendly?</div>
+      <div class="bubble ok">Filtering the same list for dog-friendly trails.</div>
+    </div>
+  </div>
+  <div class="card">
+    <p class="big">✉️ Email assistant continuity</p>
+    <div class="mock">
+      <div class="bubble user">Draft a reply to Sam.</div>
+      <div class="bubble">Here's a draft…</div>
+      <div class="bubble user">Make it shorter.</div>
+      <div class="bubble ok">Shortened the same draft.</div>
+    </div>
+  </div>
+</div>
+
+<h2>Related thought</h2>
+<div class="card">
+  <div class="timeline"><span>Just now</span><div class="t"></div><span>Later</span></div>
+  <p class="small" style="margin-top:10px">This guideline is about <b>short-term</b> memory within the "Over time" group. The page says nothing here about how long to remember or privacy limits, so that's a design decision to make deliberately. This note is my own.</p>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/remember-recent-interactions/">Microsoft HAX Toolkit – Guideline 12</a>. Mockups are original illustrations; the Eric H. dialogue is from the page.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let mem={person:null,topic:null};
+const chat=$('chat');
+function add(cls,t){const d=document.createElement('div');d.className='bubble '+cls;d.textContent=t;chat.appendChild(d);chat.scrollTop=chat.scrollHeight}
+function memView(){
+  const on=$('memOn').checked; const items=[];
+  if(on&&mem.person)items.push('👤 last person: '+mem.person);
+  if(on&&mem.topic)items.push('📌 last topic: '+mem.topic);
+  $('memView').innerHTML=on?(items.length?items.map(i=>`<span>${i}</span>`).join(''):'<span>🧠 memory empty</span>'):'<span>🚫 memory off</span>';
+}
+function reply(q){
+  const t=q.toLowerCase(), on=$('memOn').checked;
+  if(/who called/.test(t)){ if(on)mem.person='Eric H.'; return ['','Eric H.']; }
+  if(/call (him|her|them)|call .*back/.test(t)){
+    if(on&&mem.person) return ['ok','Calling '+mem.person+'…'];
+    return ['err','Whom should I call?'];
+  }
+  if(/(when|what time)/.test(t)&&/(he|she|they|him)/.test(t)){
+    if(on&&mem.person) return ['ok',mem.person+' called at 9:14 am.'];
+    return ['err','Who do you mean?'];
+  }
+  if(/weather/.test(t)){ if(on)mem.topic='weather'; return ['','Sunny, 22°C.']; }
+  if(/tomorrow|what about/.test(t)){
+    if(on&&mem.topic==='weather') return ['ok','Tomorrow: partly cloudy, 20°C.'];
+    return ['err','Tomorrow… what about it?'];
+  }
+  return ['','Sorry, this toy assistant only knows a few phrases. Try the suggestions below.'];
+}
+function send(q){
+  if(!q.trim())return; add('user',q); const [c,r]=reply(q); setTimeout(()=>{add(c,r);memView()},150);
+}
+function reset(){chat.innerHTML='';mem={person:null,topic:null};memView()}
+$('send').onclick=()=>{send($('inp').value);$('inp').value=''};
+$('inp').onkeydown=e=>{if(e.key==='Enter'){$('send').click()}};
+$('clear').onclick=reset;
+$('memOn').onchange=()=>{if(!$('memOn').checked){mem={person:null,topic:null}}memView()};
+['Who called?','Call him back','When did he call?','What\'s the weather?','What about tomorrow?'].forEach(s=>{
+  const b=document.createElement('button');b.className='chip';b.textContent=s;b.onclick=()=>send(s);$('quick').appendChild(b)
+});
+memView();
+</script>
+</body>
+</html>

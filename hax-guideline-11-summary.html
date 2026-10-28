@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 11 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.tabs button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.reco{display:flex;gap:12px;align-items:center}
+.poster{width:56px;height:76px;border-radius:8px;background:linear-gradient(135deg,#27315e,#6b3bd6);display:grid;place-items:center;font-size:26px;flex:none}
+.bar{display:grid;grid-template-columns:130px 1fr 40px;gap:10px;align-items:center;font-size:13px;margin:7px 0}
+.track{height:12px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .3s}
+.track i.neg{background:var(--bad)}
+.ex{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.ex div{flex:1;min-width:110px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center;font-size:13px}
+.ex .e{font-size:22px;display:block}
+.slider{display:grid;grid-template-columns:110px 1fr 70px;gap:10px;align-items:center;font-size:14px;margin:8px 0}
+.price{font-size:30px;font-weight:700;color:var(--brand);transition:.2s}
+.sw{display:flex;gap:10px;flex-wrap:wrap}
+.panel{display:none}.panel.on{display:block}
+.tw{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.tw{grid-template-columns:1fr}}
+.callout{border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:10px;padding:12px 14px;font-size:14px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 11 · "When wrong"</span>
+<h1>Make clear why the system did what it did</h1>
+<p class="lead">Let people see an explanation of why the AI behaved the way it did, and use that power carefully.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">Make an <b>explanation</b> of the AI's actions or outputs available, <b>as appropriate</b>. It can be <b>global</b> (how the whole system works) or <b>local</b> (why this one output). Mix and match patterns, since explanation content and design strongly affect whether they help or distract.</p>
+</div>
+
+<h2>Careful: explanations increase trust</h2>
+<div class="callout">
+  ⚠️ The page warns that the <b>mere presence of an explanation</b> has been shown to increase user trust. That can cause <b>over-reliance</b> and <b>over-inflated expectations</b>, so people may trust an AI even when it could be wrong (<i>automation bias</i>). For setting expectations, it points to Guidelines 1 and 2. It also mentions the InterpretML tool for improving model explainability.
+</div>
+
+<h2>Local vs. global, in one picture</h2>
+<div class="card">
+  <div class="tw">
+    <div>
+      <span class="pill info">Local: this one output</span>
+      <div class="mock"><div class="bubble">🎬 <b>Why this movie?</b><br>Because you watched <i>Cosmos</i> last night.</div></div>
+    </div>
+    <div>
+      <span class="pill info">Global: the whole system</span>
+      <div class="mock"><div class="bubble">⚙️ <b>How recommendations work.</b><br>We use your watch history, ratings, and what similar viewers liked.</div></div>
+    </div>
+  </div>
+</div>
+
+<h2>The seven patterns</h2>
+<p class="small">The page lists these by title only. The demos are my own interpretations of the names. Pick a pattern. The recommendation and price demos below use made-up data.</p>
+<div class="card">
+  <div class="tabs" id="tabs"></div>
+
+  <!-- 11A -->
+  <div class="panel" data-p="A">
+    <p class="big" style="margin-top:14px">11A · Local explanations</p>
+    <p class="small">Explain a single output.</p>
+    <div class="mock"><div class="reco"><div class="poster">🚀</div><div><b>Recommended: Deep Space</b><div class="small">Documentary · 2025</div><button class="btn ghost" id="whyBtn">Why am I seeing this?</button></div></div>
+      <div class="bubble" id="whyOut" style="display:none">You watched <b>Cosmos</b> and rated <b>Interstellar</b> 5★.</div></div>
+  </div>
+
+  <!-- 11B -->
+  <div class="panel" data-p="B">
+    <p class="big" style="margin-top:14px">11B · Global explanations</p>
+    <p class="small">Explain how the entire system works.</p>
+    <div class="mock">
+      <div class="bubble"><b>How our recommendations work</b></div>
+      <div class="ex"><div><span class="e">👁️</span>What you watch</div><div><span class="e">⭐</span>Your ratings</div><div><span class="e">👥</span>Similar viewers</div><div><span class="e">🕐</span>Time of day</div></div>
+      <p class="hint">Not specific to one title, but shows how the system as a whole decides.</p>
+    </div>
+  </div>
+
+  <!-- 11C -->
+  <div class="panel" data-p="C">
+    <p class="big" style="margin-top:14px">11C · Present properties of system outputs</p>
+    <p class="small">Show useful properties of the output, such as confidence, sources or recency.</p>
+    <div class="mock">
+      <div class="bubble"><b>Deep Space</b></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill good">92% match</span><span class="pill info">Similar to 14 titles you liked</span><span class="pill warn">Few ratings so far</span></div>
+    </div>
+  </div>
+
+  <!-- 11D -->
+  <div class="panel" data-p="D">
+    <p class="big" style="margin-top:14px">11D · Map input attributes to outputs</p>
+    <p class="small">Show which input factors drove the result, and how much.</p>
+    <div class="mock">
+      <div class="bubble"><b>Estimated home price: $412k</b></div>
+      <div class="bar"><span>📐 Size</span><div class="track"><i style="width:80%"></i></div><b>+$60k</b></div>
+      <div class="bar"><span>📍 Location</span><div class="track"><i style="width:55%"></i></div><b>+$35k</b></div>
+      <div class="bar"><span>🏚️ Age</span><div class="track"><i class="neg" style="width:30%"></i></div><b>−$20k</b></div>
+    </div>
+  </div>
+
+  <!-- 11E -->
+  <div class="panel" data-p="E">
+    <p class="big" style="margin-top:14px">11E · Map user behaviors to outputs</p>
+    <p class="small">Connect what the user did to what the system did.</p>
+    <div class="mock">
+      <div class="bubble">👆 You clicked on 3 hiking videos →</div>
+      <div class="bubble" style="background:var(--brand-soft)">🥾 Your feed now shows more outdoor content.</div>
+      <button class="btn ghost">Not interested in hiking</button>
+    </div>
+  </div>
+
+  <!-- 11F -->
+  <div class="panel" data-p="F">
+    <p class="big" style="margin-top:14px">11F · Example-based explanations</p>
+    <p class="small">Explain with similar cases.</p>
+    <div class="mock">
+      <div class="bubble"><b>Flagged: "Possible spam"</b></div>
+      <p class="small">Similar messages you previously marked as spam:</p>
+      <div class="ex"><div><span class="e">✉️</span>"You won a prize!"</div><div><span class="e">✉️</span>"Claim your reward"</div><div><span class="e">✉️</span>"Act now!!!"</div></div>
+    </div>
+  </div>
+
+  <!-- 11G -->
+  <div class="panel" data-p="G">
+    <p class="big" style="margin-top:14px">11G · "What if?" explanations</p>
+    <p class="small">Let people change inputs and watch the output change. Drag the sliders.</p>
+    <div class="mock">
+      <div class="slider"><span>📐 Size</span><input type="range" id="sz" min="40" max="200" value="100"><b id="szv">100 m²</b></div>
+      <div class="slider"><span>🏚️ Age</span><input type="range" id="ag" min="0" max="80" value="30"><b id="agv">30 yrs</b></div>
+      <div class="small">Estimated price</div>
+      <div class="price" id="pr"></div>
+      <p class="hint">Toy formula with made-up numbers, for illustration only.</p>
+    </div>
+  </div>
+</div>
+
+<h2>Examples from the page (not reproduced)</h2>
+<div class="card">
+  <p class="small">The page links examples including verification-focused explanations, AlphaCode, Google Search, Copilot in Excel, Business Chat, Copysmith and Jasper.ai. I didn't open them, and the demos above are my own sketches.</p>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/make-clear-why-the-system-did-what-it-did/">Microsoft HAX Toolkit – Guideline 11</a>. All mockups and numbers are original, made-up illustrations. Pattern explanations are my interpretation of their titles.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const P=[["A","11A Local"],["B","11B Global"],["C","11C Properties"],["D","11D Inputs"],["E","11E Behaviors"],["F","11F Examples"],["G","11G What if?"]];
+const tabs=$('tabs');
+P.forEach(([k,l],i)=>{
+  const b=document.createElement('button'); b.textContent=l; if(!i)b.className='on';
+  b.onclick=()=>{
+    tabs.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.dataset.p===k));
+  };
+  tabs.appendChild(b);
+});
+document.querySelector('.panel[data-p="A"]').classList.add('on');
+$('whyBtn').onclick=()=>{$('whyOut').style.display='block'};
+function price(){
+  const s=+$('sz').value, a=+$('ag').value;
+  $('szv').textContent=s+' m²'; $('agv').textContent=a+' yrs';
+  const p=Math.round((150+s*2.3-a*1.1)*1000/1000);
+  $('pr').textContent='$'+p+'k';
+}
+$('sz').oninput=price; $('ag').oninput=price; price();
+</script>
+</body>
+</html>
