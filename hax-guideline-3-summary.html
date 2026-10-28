@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 3 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.ico{font-size:26px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.phone{width:230px;max-width:100%;margin:10px auto 0;border:2px solid var(--line);border-radius:26px;background:var(--card);padding:14px 12px;min-height:250px;position:relative}
+.phone .notch{width:60px;height:5px;background:var(--line);border-radius:9px;margin:0 auto 12px}
+.screen{border-radius:12px;padding:12px;font-size:14px;min-height:110px;background:var(--bg)}
+.notif{background:var(--brand-soft);color:var(--ink);border-radius:12px;padding:9px 11px;font-size:13px;margin-top:10px;border-left:4px solid var(--brand);animation:pop .3s}
+.notif.held{background:var(--warn-soft);border-left-color:var(--warn)}
+@keyframes pop{from{transform:translateY(-6px);opacity:0}to{transform:none;opacity:1}}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ba{grid-template-columns:1fr}}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.flow .step{background:var(--brand-soft);color:var(--brand);padding:7px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.arrow{color:var(--muted)}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.tl{display:flex;gap:4px;margin-top:10px}
+.tl div{flex:1;height:34px;border-radius:6px;display:grid;place-items:center;font-size:12px;background:var(--line);color:var(--muted)}
+.tl .busy{background:var(--bad-soft);color:var(--bad)} .tl .free{background:var(--good-soft);color:var(--good)} .tl .now{outline:2px solid var(--brand)}
+.toggle{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.toggle:last-child{border-bottom:0}
+.sw{width:38px;height:22px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;border:0;padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+.sw.on{background:var(--good)} .sw.on::after{left:19px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 3 · "During interaction"</span>
+<h1>Time services based on context</h1>
+<p class="lead">Decide <i>when</i> your AI speaks up, based on what the person is doing and where they are.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">If your AI can start interactions by itself (alerts, suggestions, reminders), think about the user's <b>current task and attention</b>. Should it act now, or wait?</p>
+  <p class="small">Example from the page: a push alert should probably be postponed while the user is driving.</p>
+</div>
+
+<h2>The recipe</h2>
+<div class="card">
+  <div class="flow">
+    <span class="step">📡 Capture context signals</span><span class="arrow">→</span><span class="step">🧠 Infer a good moment</span><span class="arrow">→</span><span class="step">⏱️ Act, or hold off</span>
+  </div>
+  <p class="small" style="margin-top:12px">Signals can include current task, location, motion, calendar, or attention. Do it in a <b>privacy-aware way</b>, balancing user benefit against privacy.</p>
+</div>
+
+<h2>Try it: same message, different moments</h2>
+<div class="card">
+  <p class="small">Pick what the user is doing and see how a context-aware AI treats the same alert: <i>"Your package arrives in 10 minutes."</i></p>
+  <div class="seg" id="ctx">
+    <button class="on" data-c="idle">🛋️ Relaxing</button>
+    <button data-c="drive">🚗 Driving</button>
+    <button data-c="meeting">📅 In a meeting</button>
+    <button data-c="focus">🧑‍💻 Deep focus</button>
+  </div>
+  <div class="ba">
+    <div>
+      <span class="pill bad">Context-blind</span>
+      <div class="phone"><div class="notch"></div>
+        <div class="screen" id="screenA"></div>
+        <div class="notif">📦 Your package arrives in 10 minutes.</div>
+      </div>
+      <p class="hint" style="text-align:center">Always interrupts</p>
+    </div>
+    <div>
+      <span class="pill good">Context-aware</span>
+      <div class="phone"><div class="notch"></div>
+        <div class="screen" id="screenB"></div>
+        <div class="notif" id="notifB"></div>
+      </div>
+      <p class="hint" style="text-align:center" id="whyB"></p>
+    </div>
+  </div>
+</div>
+
+<h2>Examples from the page (sketched)</h2>
+<p class="small">The page lists Copilot in Teams, Outlook and Apple Maps. These are my own simplified sketches of the idea, not screenshots.</p>
+<div class="grid g2">
+
+<div class="card">
+  <p class="big">📅 Calendar-aware suggestions</p>
+  <p class="small">An assistant waits for a free slot before nudging you.</p>
+  <div class="mock">
+    <div class="tl">
+      <div class="busy">9</div><div class="busy">10</div><div class="busy now">11</div><div class="free">12</div><div class="free">1</div><div class="busy">2</div>
+    </div>
+    <div class="bubble" style="margin-top:10px">⏳ <b>Held until 12:00.</b> You're in a meeting. I'll share your action-item summary when it ends.</div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">🗺️ Maps: right info, right moment</p>
+  <p class="small">Prompts show at the point where they're useful, not randomly.</p>
+  <div class="mock">
+    <div class="bubble">🚗 Driving… <b>no distractions</b>, only turn-by-turn voice.</div>
+    <div class="bubble" style="background:var(--good-soft)">🅿️ <b>You've arrived.</b> Parking options nearby. Want to see them?</div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">💬 Chat: don't interrupt typing</p>
+  <p class="small">Suggestions appear when you pause, not mid-sentence.</p>
+  <div class="mock">
+    <div class="ba">
+      <div><span class="pill bad">Mid-sentence</span><div class="bubble">Let's meet on Thurs▍</div><div class="notif" style="margin-top:0">✨ Rewrite this?</div></div>
+      <div><span class="pill good">After a pause</span><div class="bubble">Let's meet on Thursday at 3.</div><div class="notif" style="margin-top:0">✨ Rewrite this?</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">🔐 Pair with Guideline 17: global controls</p>
+  <p class="small">Context sensing needs trust. Let users choose what's used.</p>
+  <div class="mock">
+    <div class="toggle"><span>📍 Use my location</span><button class="sw on"></button></div>
+    <div class="toggle"><span>📅 Use my calendar</span><button class="sw on"></button></div>
+    <div class="toggle"><span>🎤 Use ambient sound</span><button class="sw"></button></div>
+  </div>
+</div>
+
+</div>
+
+<h2>Watch-outs</h2>
+<div class="grid g2">
+  <div class="card"><span class="pill warn">Privacy trade-off</span><p class="small" style="margin-top:8px">Knowing context means collecting signals. Collect only what's needed, and explain why.</p></div>
+  <div class="card"><span class="pill warn">Wrong inference</span><p class="small" style="margin-top:8px">If the system guesses context incorrectly, it may delay something important. Make critical alerts hard to suppress.</p></div>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/time-services-based-on-context/">Microsoft HAX Toolkit – Guideline 3</a>. All mockups are original illustrations. The "Watch-outs" are my own inferences from the guideline's privacy advice, not text from the page.
+</footer>
+</div>
+
+<script>
+const C={
+ idle:{scr:"🛋️ Scrolling the news app",n:"📦 Your package arrives in 10 minutes.",held:false,why:"Safe moment: deliver now."},
+ drive:{scr:"🚗 Driving at 60 km/h",n:"⏳ Held. Will show when you park.",held:true,why:"Driving: postpone, don't distract."},
+ meeting:{scr:"📅 Presenting to 8 people",n:"⏳ Held until the meeting ends.",held:true,why:"In a meeting: wait for a free slot."},
+ focus:{scr:"🧑‍💻 Writing code, no breaks for 40 min",n:"⏳ Batched into your next break.",held:true,why:"Deep focus: batch non-urgent items."}
+};
+function render(k){
+  const c=C[k];
+  document.getElementById('screenA').textContent=c.scr;
+  document.getElementById('screenB').textContent=c.scr;
+  const n=document.getElementById('notifB');
+  n.textContent=c.n; n.className='notif'+(c.held?' held':'');
+  document.getElementById('whyB').textContent=c.why;
+}
+document.querySelectorAll('#ctx button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#ctx button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); render(b.dataset.c);
+});
+document.querySelectorAll('.sw').forEach(s=>s.onclick=()=>s.classList.toggle('on'));
+render('idle');
+</script>
+</body>
+</html>

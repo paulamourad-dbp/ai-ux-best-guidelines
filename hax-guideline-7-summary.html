@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 7 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.ico{font-size:26px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ba{grid-template-columns:1fr}}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.editor{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;min-height:70px;position:relative}
+.editor textarea{width:100%;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;resize:vertical;min-height:60px}
+.toolbar{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.sug{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--good-soft);font-size:14px;animation:pop .3s}
+.sug.miss{background:var(--warn-soft)}
+@keyframes pop{from{transform:translateY(-4px);opacity:0}to{transform:none;opacity:1}}
+.kbd{font:12px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:var(--card)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.flow .step{background:var(--brand-soft);color:var(--brand);padding:7px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.flow .step.bad{background:var(--bad-soft);color:var(--bad)}
+.arrow{color:var(--muted)}
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.ways div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;font-size:13px}
+.ways .e{font-size:24px}
+.cells{display:grid;grid-template-columns:1.2fr 1fr;gap:6px;font-size:14px}
+.cells div{background:var(--card);border:1px solid var(--line);padding:6px 10px;border-radius:6px}
+.cells .h{font-weight:600;background:var(--brand-soft);border-color:transparent}
+.cells .ghost{color:var(--muted);border-style:dashed}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 7 · "When wrong"</span>
+<h1>Support efficient invocation</h1>
+<p class="lead">If the AI doesn't show up when you need it, there should be an easy way to call it in yourself.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">AI systems will make mistakes. One kind of mistake is <b>not activating</b> when it should (or not as expected). So give people a simple way to <b>manually invoke</b> the AI's services and recover.</p>
+  <p class="small">Example from the page: a writing assistant that suggests more inclusive phrasing should let the user request suggestions manually, in case it fails to trigger when desired.</p>
+</div>
+
+<h2>The problem, in 3 steps</h2>
+<div class="card">
+  <div class="flow">
+    <span class="step">✍️ User types something that needs help</span><span class="arrow">→</span>
+    <span class="step bad">🤖 AI doesn't trigger</span><span class="arrow">→</span>
+    <span class="step">🔘 Manual "invoke" button saves the day</span>
+  </div>
+  <p class="small" style="margin-top:12px">Without that last step, the user is stuck: the help exists, but they can't reach it.</p>
+</div>
+
+<h2>Try it: auto-trigger vs. manual invoke</h2>
+<div class="card">
+  <p class="small">A writing assistant looks for non-inclusive phrasing. It sometimes misses. Type something, then see what happens in each design. Try the sample phrases.</p>
+  <div class="toolbar" style="margin:0 0 10px">
+    <button class="btn ghost" data-s="The chairman will present the plan.">Sample 1 (auto catches)</button>
+    <button class="btn ghost" data-s="We need more manpower on this project.">Sample 2 (auto misses)</button>
+  </div>
+  <div class="ba">
+    <div>
+      <span class="pill bad">Auto-only</span>
+      <div class="mock">
+        <div class="editor"><textarea id="tA" placeholder="Type a sentence…"></textarea></div>
+        <div id="outA"></div>
+        <p class="hint">No button. If it misses, the user has no recourse.</p>
+      </div>
+    </div>
+    <div>
+      <span class="pill good">Auto + manual invoke</span>
+      <div class="mock">
+        <div class="editor"><textarea id="tB" placeholder="Type a sentence…"></textarea></div>
+        <div class="toolbar"><button class="btn" id="invoke">✨ Check inclusive wording</button><span class="small">or <span class="kbd">Ctrl</span>+<span class="kbd">Space</span></span></div>
+        <div id="outB"></div>
+        <p class="hint">User can always ask, even if the AI stayed quiet.</p>
+      </div>
+    </div>
+  </div>
+  <p class="hint">Toy simulation. The "auto" detector only recognises "chairman" and deliberately misses the second sample. The manual invoke runs a fuller check.</p>
+</div>
+
+<h2>Ways to make invocation easy</h2>
+<p class="small">The page doesn't prescribe a specific list. These are common options I'm suggesting, each of which you can see in everyday software.</p>
+<div class="card">
+  <div class="ways">
+    <div><div class="e">🔘</div><b>Button in the UI</b><br>Visible in the toolbar</div>
+    <div><div class="e">⌨️</div><b>Keyboard shortcut</b><br>Fast for frequent users</div>
+    <div><div class="e">🖱️</div><b>Right-click menu</b><br>Where the content is</div>
+    <div><div class="e">/</div><b>Slash command</b><br>Type "/" to call it</div>
+    <div><div class="e">🎙️</div><b>Voice command</b><br>"Hey assistant…"</div>
+  </div>
+</div>
+
+<h2>Examples from the page (sketched)</h2>
+<p class="small">The page lists Copilot in Word, Copilot in Outlook, Excel Flash Fill, PowerPoint and Amazon.com. These are my own simplified sketches, not screenshots.</p>
+<div class="grid g2">
+
+<div class="card">
+  <p class="big">📊 Spreadsheet auto-fill: "do it for me"</p>
+  <p class="small">If the pattern isn't detected automatically, the user can trigger it from a menu or shortcut.</p>
+  <div class="mock">
+    <div class="cells">
+      <div class="h">Full name</div><div class="h">First name</div>
+      <div>Ana Silva</div><div>Ana</div>
+      <div>Bruno Costa</div><div class="ghost">⋯ not auto-filled</div>
+    </div>
+    <div class="toolbar"><button class="btn ghost">⚡ Fill the rest</button><span class="small"><span class="kbd">Ctrl</span>+<span class="kbd">E</span></span></div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">✉️ Email assistant: always available</p>
+  <p class="small">Suggested replies may not appear. A persistent button lets users request them.</p>
+  <div class="mock">
+    <div class="bubble">Can we move the meeting to Friday?</div>
+    <div class="toolbar"><button class="btn ghost">✨ Draft a reply</button><button class="btn ghost">📝 Summarize</button></div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">🛍️ Online shop: ask for recommendations</p>
+  <p class="small">If suggestions don't show up on a page, users can still find them.</p>
+  <div class="mock">
+    <div class="bubble">🛒 <b>Wireless earbuds</b> · $59</div>
+    <div class="toolbar"><button class="btn ghost">💡 Show similar items</button></div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">🎞️ Slides: design ideas on demand</p>
+  <p class="small">The design helper might not pop up. A button lets people summon it.</p>
+  <div class="mock">
+    <div class="bubble" style="text-align:center">📄 Slide 3: Plain text</div>
+    <div class="toolbar" style="justify-content:center"><button class="btn ghost">🎨 Design ideas</button></div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/support-efficient-invocation/">Microsoft HAX Toolkit – Guideline 7</a>. All mockups are original illustrations. The invocation-methods list and the toy detector are my own additions.
+</footer>
+</div>
+
+<script>
+function autoCheck(t){ return /chairman/i.test(t) ? "Consider “chair” or “chairperson”." : null; }
+function fullCheck(t){
+  if(/chairman/i.test(t)) return "Consider “chair” or “chairperson”.";
+  if(/manpower/i.test(t)) return "Consider “workforce” or “staffing”.";
+  return null;
+}
+const tA=document.getElementById('tA'), tB=document.getElementById('tB');
+function runA(){
+  const r=autoCheck(tA.value);
+  document.getElementById('outA').innerHTML = r ? `<div class="sug">💡 ${r}</div>` : (tA.value.trim()?`<div class="sug miss">No suggestion shown… (did it miss something?)</div>`:'');
+}
+tA.oninput=runA;
+tB.oninput=()=>{
+  const r=autoCheck(tB.value);
+  document.getElementById('outB').innerHTML = r ? `<div class="sug">💡 ${r}</div>` : (tB.value.trim()?`<div class="sug miss">No suggestion shown. Click the button to run a full check.</div>`:'');
+};
+function invoke(){
+  const t=tB.value.trim(); if(!t) return;
+  const r=fullCheck(t);
+  document.getElementById('outB').innerHTML = r ? `<div class="sug">💡 ${r}</div>` : `<div class="sug">✅ Checked. Nothing to suggest.</div>`;
+}
+document.getElementById('invoke').onclick=invoke;
+tB.addEventListener('keydown',e=>{ if(e.ctrlKey && e.code==='Space'){e.preventDefault();invoke();} });
+document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{
+  tA.value=tB.value=b.dataset.s; runA(); tB.oninput();
+});
+</script>
+</body>
+</html>

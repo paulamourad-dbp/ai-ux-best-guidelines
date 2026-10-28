@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 4 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.ico{font-size:26px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ba{grid-template-columns:1fr}}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.flow .step{background:var(--brand-soft);color:var(--brand);padding:7px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.arrow{color:var(--muted)}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:flex;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--line);font-size:14px}
+.list li:last-child{border-bottom:0}
+.list .em{font-size:22px}
+.list small{display:block;color:var(--muted)}
+.list .r{margin-left:auto;color:var(--muted);font-size:13px;white-space:nowrap}
+.sig{display:flex;flex-wrap:wrap;gap:8px}
+.sig span{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:13px}
+.toggle{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.toggle:last-child{border-bottom:0}
+.sw{width:38px;height:22px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;border:0;padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+.sw.on{background:var(--good)} .sw.on::after{left:19px}
+.skel{height:8px;border-radius:4px;background:var(--line);margin:7px 0}
+.hl{background:var(--brand-soft);border-radius:4px;padding:0 3px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 4 · "During interaction"</span>
+<h1>Show contextually relevant information</h1>
+<p class="lead">Show what matters for this person, right now, in this place, doing this task.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">What people expect or need to see depends on their <b>current task, location, or time of day</b>. Capture those signals and use them to tailor what your AI shows.</p>
+  <p class="small">Example from the page: a restaurant recommender should consider the user's location and show places nearby.</p>
+</div>
+
+<h2>The recipe</h2>
+<div class="card">
+  <div class="flow">
+    <span class="step">📡 Capture context signals</span><span class="arrow">→</span><span class="step">🎯 Tailor the content</span><span class="arrow">→</span><span class="step">✅ User sees what's relevant</span>
+  </div>
+  <p class="small" style="margin-top:12px">Signals can be</p>
+  <div class="sig"><span>📍 Location</span><span>🕐 Time of day</span><span>📝 Current task</span><span>👀 What's on screen</span></div>
+  <p class="small" style="margin-top:12px">Do it in a <b>privacy-aware way</b>, weighing user benefit against privacy.</p>
+</div>
+
+<h2>Try it: the same search, different contexts</h2>
+<div class="card">
+  <p class="small">The user types <b>"dinner ideas"</b>. Change their context and watch the results adapt.</p>
+  <div class="seg" id="ctx">
+    <button class="on" data-c="home">🏠 At home, 6 pm</button>
+    <button data-c="travel">✈️ Visiting Lisbon, 8 pm</button>
+    <button data-c="late">🌙 Downtown, 11 pm</button>
+  </div>
+  <div class="ba">
+    <div>
+      <span class="pill bad">Context-blind</span>
+      <div class="mock"><ul class="list">
+        <li><span class="em">🍝</span><div>Pasta Palace<small>Chicago</small></div><span class="r">4,300 km</span></li>
+        <li><span class="em">🍣</span><div>Sushi Zen<small>Tokyo</small></div><span class="r">9,800 km</span></li>
+        <li><span class="em">🥘</span><div>Casa Madrid<small>Madrid</small></div><span class="r">500 km</span></li>
+      </ul></div>
+      <p class="hint">Generic list, same for everyone.</p>
+    </div>
+    <div>
+      <span class="pill good">Context-aware</span>
+      <div class="mock"><ul class="list" id="relevant"></ul></div>
+      <p class="hint" id="why"></p>
+    </div>
+  </div>
+</div>
+
+<h2>Examples from the page (sketched)</h2>
+<p class="small">The page lists examples from Copilot in Word, Business Chat, Viva Topics, Word, Google Search and Walmart.com. These are my own simplified sketches of the idea, not screenshots.</p>
+<div class="grid g2">
+
+<div class="card">
+  <p class="big">📝 Writing tool: suggestions follow the text</p>
+  <p class="small">What the assistant offers depends on what you've selected.</p>
+  <div class="mock">
+    <div class="bubble">Q3 revenue grew <span class="hl">12% year over year</span>, driven by…</div>
+    <div class="bubble" style="background:var(--brand-soft)">📊 <b>You selected a number.</b> Turn it into a chart?</div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">🔎 Search: location-aware results</p>
+  <p class="small">Searching "pharmacy" shows nearby places, open now.</p>
+  <div class="mock">
+    <div class="bubble"><b>pharmacy</b></div>
+    <ul class="list">
+      <li><span class="em">💊</span><div>Corner Pharmacy<small>Open · closes 9 pm</small></div><span class="r">0.3 km</span></li>
+      <li><span class="em">💊</span><div>Health Plus<small>Open 24 h</small></div><span class="r">1.1 km</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">🛒 Shopping: local availability</p>
+  <p class="small">Show stock and pickup options for the store near you.</p>
+  <div class="mock">
+    <div class="bubble"><b>Desk lamp</b> · $24</div>
+    <div class="bubble" style="background:var(--good-soft)">✅ In stock at <b>Main St store</b> (2 km). Pickup in 1 hour.</div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">💡 Knowledge tool: explain terms in context</p>
+  <p class="small">Hover a term in a document and see what it means <i>in your organization</i>.</p>
+  <div class="mock">
+    <div class="skel" style="width:90%"></div>
+    <div class="bubble">The rollout follows <span class="hl">Project Atlas</span> guidelines.</div>
+    <div class="bubble" style="background:var(--brand-soft)"><b>Project Atlas</b>: the 2026 platform migration. Owner: Infra team.</div>
+  </div>
+</div>
+
+</div>
+
+<h2>Privacy: pair with Guideline 17</h2>
+<div class="card">
+  <p class="small">Context needs data. The page recommends pairing this guideline with <b>Guideline 17, Provide global controls</b>, so people can choose what's used.</p>
+  <div class="mock">
+    <div class="toggle"><span>📍 Use my location for recommendations</span><button class="sw on"></button></div>
+    <div class="toggle"><span>🕐 Use time of day</span><button class="sw on"></button></div>
+    <div class="toggle"><span>📝 Use what I'm working on</span><button class="sw"></button></div>
+  </div>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/show-contextually-relevant-information/">Microsoft HAX Toolkit – Guideline 4</a>. All mockups are original illustrations with made-up data.
+</footer>
+</div>
+
+<script>
+const C={
+ home:{why:"At home in the evening: cooking ideas and delivery, using what's in your area.",items:[["🍳","Quick 20-min stir-fry","Uses what you usually buy","~20 min"],["🛵","Pizza delivery","Open now, near you","30 min"],["🥗","Meal-kit recipes","Matches past orders","~35 min"]]},
+ travel:{why:"Traveling: local restaurants near your hotel, at dinner time.",items:[["🐟","Tasca do Mar","Local seafood, open now","350 m"],["🍷","Petiscos Bar","Small plates, good for 8 pm","600 m"],["🥐","Pastelaria Sol","Dessert after dinner","450 m"]]},
+ late:{why:"Late at night downtown: places still open, and nothing that closed at 10.",items:[["🍜","Night Noodle","Open until 2 am","200 m"],["🌮","Taco Stand","Open until 1 am","400 m"],["🍔","24h Diner","Always open","700 m"]]}
+};
+function render(k){
+  const c=C[k];
+  document.getElementById('relevant').innerHTML=c.items.map(i=>`<li><span class="em">${i[0]}</span><div>${i[1]}<small>${i[2]}</small></div><span class="r">${i[3]}</span></li>`).join('');
+  document.getElementById('why').textContent=c.why;
+}
+document.querySelectorAll('#ctx button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#ctx button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); render(b.dataset.c);
+});
+document.querySelectorAll('.sw').forEach(s=>s.onclick=()=>s.classList.toggle('on'));
+render('home');
+</script>
+</body>
+</html>

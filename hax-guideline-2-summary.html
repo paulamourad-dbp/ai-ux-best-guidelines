@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 2 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.ico{font-size:26px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px;margin:6px 0}
+.bubble.q{background:var(--brand-soft);border-color:transparent;margin-left:30px}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ba{grid-template-columns:1fr}}
+.meter{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0}
+.meter i{display:block;height:100%;background:var(--brand)}
+.row{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+mark.u{background:var(--warn-soft);color:var(--ink);border-bottom:2px dotted var(--warn);padding:0 2px;border-radius:3px;cursor:help}
+.alert{display:flex;gap:10px;align-items:flex-start;background:var(--warn-soft);color:var(--ink);border-left:4px solid var(--warn);padding:10px 12px;border-radius:8px;font-size:14px}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.steps b{background:var(--card);border:1px solid var(--line);padding:4px 10px;border-radius:99px;font-size:13px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.scale{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--muted)}
+.scale .track{flex:1;height:8px;border-radius:99px;background:linear-gradient(90deg,var(--bad),var(--warn),var(--good))}
+.scale .pin{position:relative;flex:1}
+.pinwrap{position:relative;height:8px;flex:1;border-radius:99px;background:linear-gradient(90deg,var(--bad),var(--warn),var(--good))}
+.pinwrap i{position:absolute;top:-5px;width:4px;height:18px;border-radius:2px;background:var(--ink);left:50%;transition:left .3s}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 2 · "Initially"</span>
+<h1>Make clear how well the system can do what it can do</h1>
+<p class="lead">Help people understand how often an AI may make mistakes, so they trust it the right amount.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">People often <b>over-</b> or <b>under-estimate</b> how many mistakes an AI makes, even at tasks it was built for. Your interface should set realistic expectations up front.</p>
+  <p class="small">Example from the page: a fitness tracker counts steps well, but may miss steps on stairs or hills, or count a swing as steps.</p>
+</div>
+
+<h2>Three ways trust can go wrong</h2>
+<div class="grid g2">
+  <div class="card">
+    <span class="pill bad">Unrealistic expectations</span>
+    <div class="ico" style="margin-top:8px">😞</div>
+    <p class="small">Disappointment, and eventually people abandon the product.</p>
+  </div>
+  <div class="card">
+    <span class="pill warn">Over-trust · "automation bias"</span>
+    <div class="ico" style="margin-top:8px">🙈</div>
+    <p class="small">Trusting the AI even when it could be wrong. The page cites judges relying on sentencing recommendations (the COMPAS example).</p>
+  </div>
+  <div class="card">
+    <span class="pill info">Under-trust · "algorithm aversion"</span>
+    <div class="ico" style="margin-top:8px">🙅</div>
+    <p class="small">Ignoring the AI even when it's likely right, so its benefits are lost.</p>
+  </div>
+  <div class="card">
+    <span class="pill good">The goal</span>
+    <div class="ico" style="margin-top:8px">⚖️</div>
+    <p class="small">Calibrated trust: rely on it when it's strong, double-check when it's shaky.</p>
+  </div>
+</div>
+
+<h2>Calibrated trust, visualised</h2>
+<div class="card">
+  <p class="small">Drag through three kinds of users. Where does their trust sit compared with how reliable the AI really is?</p>
+  <div class="seg" id="trust">
+    <button class="on" data-v="12">Under-trusts</button><button data-v="50">Calibrated</button><button data-v="90">Over-trusts</button>
+  </div>
+  <div class="row"><span>Trust level</span><span id="tl">Low</span></div>
+  <div class="pinwrap"><i id="pin" style="left:12%"></i></div>
+  <div class="row" style="margin-top:12px"><span>Real reliability</span><span>Medium (~75%)</span></div>
+  <div class="pinwrap"><i style="left:75%"></i></div>
+  <p class="hint" id="tmsg">Low trust: the user skips help that would have been right.</p>
+</div>
+
+<h2>The four patterns, with examples</h2>
+<p class="small">These are my own simplified sketches of each pattern, not screenshots from the examples on the page.</p>
+
+<div class="grid g2">
+
+<div class="card">
+  <span class="pill info">2A</span>
+  <p class="big" style="margin-top:6px">Match precision of <u>language</u></p>
+  <p class="small">Words should sound as sure as the system really is. Hedge when unsure.</p>
+  <div class="mock">
+    <div class="bubble q">Which of these is a mushroom I can eat?</div>
+    <div class="ba">
+      <div><span class="pill bad">Too confident</span><div class="bubble">This is definitely safe to eat.</div></div>
+      <div><span class="pill good">Matches performance</span><div class="bubble">This <i>looks like</i> a chanterelle, but I'm not certain. Check with an expert.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <span class="pill info">2B</span>
+  <p class="big" style="margin-top:6px">Match precision of <u>numbers</u></p>
+  <p class="small">Don't show more digits than the system can back up.</p>
+  <div class="mock">
+    <div class="ba">
+      <div><span class="pill bad">False precision</span><div class="bubble" style="font-size:20px;font-weight:700">12,437 steps</div></div>
+      <div><span class="pill good">Honest range</span><div class="bubble" style="font-size:20px;font-weight:700">About 12,000 steps</div></div>
+    </div>
+    <p class="hint">A tracker that misses stairs can't claim to be right to the last step.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="pill info">2C</span>
+  <p class="big" style="margin-top:6px">Report system performance</p>
+  <p class="small">Tell people how well it does, in plain terms.</p>
+  <div class="mock">
+    <b style="font-size:14px">Translation quality</b>
+    <div class="row" style="margin-top:8px"><span>Spanish ↔ English</span><span>High</span></div>
+    <div class="meter"><i style="width:92%"></i></div>
+    <div class="row"><span>Finnish ↔ English</span><span>Medium</span></div>
+    <div class="meter"><i style="width:68%"></i></div>
+    <div class="row"><span>Rare dialects</span><span>Limited</span></div>
+    <div class="meter"><i style="width:35%;background:var(--warn)"></i></div>
+  </div>
+</div>
+
+<div class="card">
+  <span class="pill info">2D</span>
+  <p class="big" style="margin-top:6px">Provide low-performance alerts</p>
+  <p class="small">Speak up at the moment the system is struggling.</p>
+  <div class="mock">
+    <div class="bubble">📍 Navigating… signal strength dropping</div>
+    <div class="alert"><span>⚠️</span><span><b>Location accuracy is low.</b> Tunnel ahead, so directions may be late or wrong. Follow road signs too.</span></div>
+  </div>
+</div>
+
+</div>
+
+<h2>Other ideas shown on the page</h2>
+<p class="small">The page also lists examples such as uncertainty highlighting, AI-framed questioning, background explanations and contrastive explanations. Here are two of them:</p>
+<div class="grid g2">
+  <div class="card">
+    <p class="big">Uncertainty highlighting</p>
+    <p class="small">Mark the parts the AI is less sure about. Hover the dotted words.</p>
+    <div class="mock"><div class="bubble">Meeting is on <mark class="u" title="Low confidence: transcript unclear">Thursday the 14th</mark> at 3 pm with <mark class="u" title="Low confidence: name may be misheard">Priya Raman</mark>, followed by a budget review.</div></div>
+  </div>
+  <div class="card">
+    <p class="big">Contrastive explanation</p>
+    <p class="small">Explain why the AI chose A <i>instead of</i> B, which helps users judge when it may be wrong.</p>
+    <div class="mock"><div class="bubble"><b>Flagged as spam</b> rather than "promotion" because the sender is new and the message has no unsubscribe link.</div></div>
+  </div>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/make-clear-how-well-the-system-can-do-what-it-can-do/">Microsoft HAX Toolkit – Guideline 2</a>. All mockups are original illustrations.
+</footer>
+</div>
+
+<script>
+const msgs={12:["Low","Low trust: the user skips help that would have been right."],
+50:["Matched","Calibrated: trust follows reliability, so the user leans on it and still checks the shaky parts."],
+90:["Very high","Over-trust: the user accepts wrong answers without checking. Risky!"]};
+document.querySelectorAll('#trust button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#trust button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); const v=b.dataset.v;
+  document.getElementById('pin').style.left=v+'%';
+  document.getElementById('tl').textContent=msgs[v][0];
+  document.getElementById('tmsg').textContent=msgs[v][1];
+});
+</script>
+</body>
+</html>

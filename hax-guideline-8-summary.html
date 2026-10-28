@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 8 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.ico{font-size:26px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ba{grid-template-columns:1fr}}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.btn.x{border-color:var(--line);background:transparent;color:var(--muted);padding:2px 9px;font-size:16px;line-height:1.2}
+.btn.x:hover{background:var(--bad-soft);color:var(--bad)}
+.kbd{font:12px ui-monospace,Menlo,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:var(--card)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.flow .step{background:var(--brand-soft);color:var(--brand);padding:7px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.flow .step.bad{background:var(--bad-soft);color:var(--bad)}
+.arrow{color:var(--muted)}
+.editor{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;position:relative;min-height:150px}
+.pop{margin-top:10px;border:1px solid var(--brand);background:var(--brand-soft);border-radius:12px;padding:10px 12px;font-size:14px;animation:pop .3s}
+.pop .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pop.trap{border-color:var(--bad);background:var(--bad-soft)}
+.pop .actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+@keyframes pop{from{transform:translateY(-4px);opacity:.2}to{transform:none;opacity:1}}
+.skel{height:8px;border-radius:4px;background:var(--line);margin:7px 0}
+.ghosttxt{color:var(--muted);opacity:.7}
+.voice{display:flex;align-items:center;gap:10px}
+.orb{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#9cc2ff,var(--brand));animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.15)}}
+.tally{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:13px}
+.tally span{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 8 · "When wrong"</span>
+<h1>Support efficient dismissal</h1>
+<p class="lead">If the AI shows up when it isn't wanted, make it easy to wave it away.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">AI systems will make mistakes. One kind is <b>activating when not needed or expected</b>. So make it easy to <b>dismiss or ignore</b> its services, so people can recover quickly.</p>
+  <p class="small">Example from the page: a voice assistant should be easy to dismiss if it mistakenly triggers or acts in an inappropriate situation.</p>
+</div>
+
+<h2>Guideline 7's mirror image</h2>
+<div class="card">
+  <div class="ba">
+    <div>
+      <span class="pill info">Guideline 7: invocation</span>
+      <div class="flow"><span class="step bad">AI stays quiet</span><span class="arrow">→</span><span class="step">User calls it in</span></div>
+      <p class="small">Fixes a <b>missed</b> activation.</p>
+    </div>
+    <div>
+      <span class="pill info">Guideline 8: dismissal</span>
+      <div class="flow"><span class="step bad">AI pops up uninvited</span><span class="arrow">→</span><span class="step">User sends it away</span></div>
+      <p class="small">Fixes an <b>unwanted</b> activation.</p>
+    </div>
+  </div>
+  <p class="hint">Both are in the page group "When wrong". The side-by-side framing is my own.</p>
+</div>
+
+<h2>Try it: dismissible vs. sticky</h2>
+<div class="card">
+  <p class="small">An AI writing helper pops up while you work. Try to get rid of it in each design.</p>
+  <div class="ba">
+    <div>
+      <span class="pill bad">Hard to dismiss</span>
+      <div class="mock">
+        <div class="editor">
+          <div class="skel"></div><div class="skel" style="width:85%"></div><div class="skel" style="width:60%"></div>
+          <div class="pop trap" id="popA">
+            <div class="row"><span>✨ Want me to rewrite this paragraph?</span></div>
+            <div class="actions"><button class="btn" id="yesA">Yes, rewrite</button><button class="btn" id="laterA">Remind me later</button></div>
+          </div>
+        </div>
+        <p class="hint" id="hintA">No close button, no "no thanks". Only ways forward.</p>
+      </div>
+    </div>
+    <div>
+      <span class="pill good">Easy to dismiss</span>
+      <div class="mock">
+        <div class="editor">
+          <div class="skel"></div><div class="skel" style="width:85%"></div><div class="skel" style="width:60%"></div>
+          <div class="pop" id="popB">
+            <div class="row"><span>✨ Want me to rewrite this paragraph?</span><button class="btn x" id="xB" aria-label="Dismiss">×</button></div>
+            <div class="actions"><button class="btn" id="yesB">Rewrite</button><button class="btn ghost" id="noB">No thanks</button><span class="small">or <span class="kbd">Esc</span></span></div>
+          </div>
+        </div>
+        <p class="hint" id="hintB">× button, "No thanks", and the Esc key all dismiss it.</p>
+      </div>
+    </div>
+  </div>
+  <div class="tally"><span>Left design clicks: <b id="cA">0</b></span><span>Right design clicks to dismiss: <b id="cB">0</b></span></div>
+  <button class="btn ghost" id="reset" style="margin-top:10px">↻ Reset demo</button>
+</div>
+
+<h2>Ways to make dismissal easy</h2>
+<p class="small">The page doesn't give a list. These are common options I'm suggesting.</p>
+<div class="card">
+  <div class="grid g2">
+    <div><b>✕ Close button</b><div class="small">Obvious, one click, near the message.</div></div>
+    <div><b>⌨️ Esc key</b><div class="small">Quick for keyboard users.</div></div>
+    <div><b>🙅 "No thanks" / "Not now"</b><div class="small">Plain-language choice in the prompt.</div></div>
+    <div><b>⏩ Just keep working</b><div class="small">Ignoring it is enough; it fades away without blocking.</div></div>
+  </div>
+</div>
+
+<h2>Examples from the page (sketched)</h2>
+<p class="small">The page lists Copilot in Outlook, Copilot in Word, Microsoft Forms, Siri and Instagram. These are my own simplified sketches, not screenshots.</p>
+<div class="grid g2">
+
+<div class="card">
+  <p class="big">🎙️ Voice assistant triggered by mistake</p>
+  <p class="small">Saying "stop" or tapping anywhere should end it right away.</p>
+  <div class="mock">
+    <div class="voice"><div class="orb"></div><div>Listening…</div></div>
+    <div class="bubble" style="margin-top:10px">🗣️ "…and that's why I think the budget is fine."</div>
+    <div style="display:flex;gap:8px;align-items:center"><button class="btn ghost">✕ Cancel</button><span class="small">or say "never mind"</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">✉️ Draft suggestion in an email</p>
+  <p class="small">Ghost text you can ignore by typing on, or discard.</p>
+  <div class="mock">
+    <div class="bubble">Hi Sam, thanks for the update. <span class="ghosttxt">I'll review the document and get back to you by Friday.</span></div>
+    <div class="small"><span class="kbd">Tab</span> accept · <span class="kbd">Esc</span> dismiss · keep typing to ignore</div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">📝 Form builder: suggested questions</p>
+  <p class="small">Each suggestion can be removed on its own.</p>
+  <div class="mock">
+    <div class="bubble" style="display:flex;justify-content:space-between;gap:8px"><span>💡 How satisfied are you?</span><button class="btn x">×</button></div>
+    <div class="bubble" style="display:flex;justify-content:space-between;gap:8px"><span>💡 Would you recommend us?</span><button class="btn x">×</button></div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">📸 Social feed: "not interested"</p>
+  <p class="small">Unwanted suggested content can be hidden quickly.</p>
+  <div class="mock">
+    <div class="bubble"><b>Suggested for you</b> · Travel photos</div>
+    <div style="display:flex;gap:8px"><button class="btn ghost">Not interested</button><button class="btn ghost">Hide</button></div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/support-efficient-dismissal/">Microsoft HAX Toolkit – Guideline 8</a>. All mockups are original illustrations. The ways-to-dismiss list and the Guideline 7 comparison framing are my own additions.
+</footer>
+</div>
+
+<script>
+let a=0,b=0;
+const $=id=>document.getElementById(id);
+function tick(side){ if(side==='A'){a++;$('cA').textContent=a}else{b++;$('cB').textContent=b} }
+// Left (sticky): buttons just reshuffle the popup
+$('yesA').onclick=()=>{tick('A');$('hintA').textContent="It rewrote your text. That's not what you wanted!"};
+$('laterA').onclick=()=>{tick('A');$('hintA').textContent="It'll nag you again later. Still no way to say no."};
+document.querySelector('#popA').onclick=e=>{ if(e.target.tagName!=='BUTTON'){tick('A');$('hintA').textContent="Clicking the box does nothing. You're stuck with it."} };
+// Right: dismissible
+function closeB(){ if($('popB').style.display==='none') return; tick('B'); $('popB').style.display='none'; $('hintB').textContent="Gone in one click. Back to work."; }
+$('xB').onclick=closeB; $('noB').onclick=closeB;
+$('yesB').onclick=()=>{tick('B');$('hintB').textContent="Rewrote it, because you chose to."};
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeB(); });
+$('reset').onclick=()=>{
+  a=b=0;$('cA').textContent=0;$('cB').textContent=0;
+  $('popB').style.display='';$('hintA').textContent="No close button, no \"no thanks\". Only ways forward.";
+  $('hintB').textContent="× button, \"No thanks\", and the Esc key all dismiss it.";
+};
+</script>
+</body>
+</html>

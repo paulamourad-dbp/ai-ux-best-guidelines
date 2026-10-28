@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 9 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:5px 12px;border-radius:99px;font:inherit;font-size:13px;cursor:pointer}
+.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.flow .step{background:var(--brand-soft);color:var(--brand);padding:7px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.flow .step.bad{background:var(--bad-soft);color:var(--bad)}
+.arrow{color:var(--muted)}
+.map{position:relative;height:190px;border-radius:12px;background:
+  repeating-linear-gradient(0deg,var(--line) 0 1px,transparent 1px 28px),
+  repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 28px),var(--card);border:1px solid var(--line);overflow:hidden}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.zone{position:absolute;left:44%;top:30%;width:60px;height:60px;border-radius:50%;background:var(--bad-soft);border:2px dashed var(--bad);display:grid;place-items:center;font-size:20px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.toast{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;font-size:14px;margin-top:10px;animation:pop .25s}
+.toast button{background:transparent;border:0;color:var(--brand);font:inherit;font-weight:700;cursor:pointer}
+@media(prefers-color-scheme:dark){.toast button{color:#8fb3ff}}
+@keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:12px}
+tr.sel td{background:var(--brand-soft)}
+.ptitle{display:flex;gap:10px;align-items:center}
+.pnum{background:var(--brand);color:#fff;border-radius:8px;font-weight:700;padding:2px 9px;font-size:14px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 9 · "When wrong"</span>
+<h1>Support efficient correction</h1>
+<p class="lead">When the AI is only partly right, let people edit, refine, or recover instead of starting over.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">AI is sometimes <b>only partially correct</b>. To let people still reach their goal, make it easy to <b>edit the AI's outputs</b>.</p>
+  <p class="small">Example from the page: a navigation app recommends a fast route, and the user can edit the route or part of it, for example to avoid an area they know is under construction.</p>
+</div>
+
+<h2>Try it: fix just the bad part of a route</h2>
+<div class="card">
+  <p class="small">The AI picked the fastest route, but there's roadwork in the middle. Compare two designs.</p>
+  <div class="grid g2">
+    <div>
+      <span class="pill bad">All or nothing</span>
+      <div class="mock">
+        <div class="map">
+          <svg viewBox="0 0 300 190" preserveAspectRatio="none"><path d="M20 160 L150 60 L280 30" fill="none" stroke="var(--brand)" stroke-width="5" stroke-linecap="round"/></svg>
+          <div class="zone">🚧</div>
+        </div>
+        <div style="margin-top:8px"><button class="btn ghost" id="redo">↻ Recalculate from scratch</button></div>
+        <p class="hint" id="hA">Route runs through the roadwork. The only option is to start over.</p>
+      </div>
+    </div>
+    <div>
+      <span class="pill good">Edit part of the route</span>
+      <div class="mock">
+        <div class="map">
+          <svg viewBox="0 0 300 190" preserveAspectRatio="none">
+            <path id="routeB" d="M20 160 L150 60 L280 30" fill="none" stroke="var(--brand)" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <div class="zone">🚧</div>
+        </div>
+        <div style="margin-top:8px"><button class="btn" id="avoid">🚧 Avoid this area</button> <button class="btn ghost" id="resetB">Reset</button></div>
+        <p class="hint" id="hB">Tap the area to avoid. Only that segment changes.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>The five patterns</h2>
+<p class="small">The page lists these five by title only. The explanations and demos below are my own interpretations, based on what the names suggest.</p>
+
+<div class="grid g2">
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">9A</span><span class="big" style="margin:0">Switch classification decisions</span></div>
+  <p class="small">If the AI labels something wrong, let the user change the label.</p>
+  <div class="mock">
+    <div class="bubble"><b>Invoice_March.pdf</b></div>
+    <div class="small" style="margin:4px 0">AI says: <span class="pill info" id="cls">Receipt</span> (wrong?) Pick the right one:</div>
+    <div id="clsChips" style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="chip on">Receipt</button><button class="chip">Invoice</button><button class="chip">Contract</button>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">9B</span><span class="big" style="margin:0">Rich and detailed edits</span></div>
+  <p class="small">Go beyond "accept / reject": edit the details of the output itself.</p>
+  <div class="mock">
+    <div class="bubble" contenteditable="true" style="outline:2px dashed var(--brand)">We'll ship your order in 2 weeks. (click to edit this AI-written text)</div>
+    <div class="seg"><button>Shorter</button><button>Friendlier</button><button>More formal</button></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">9C</span><span class="big" style="margin:0">Undo automated actions</span></div>
+  <p class="small">If the AI acted on its own, give a quick way back.</p>
+  <div class="mock">
+    <div class="bubble" id="mail">📥 3 emails auto-moved to "Promotions"</div>
+    <div id="undoArea"></div>
+    <button class="btn ghost" id="auto">▶ Run the automation</button>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">9D</span><span class="big" style="margin:0">Do G9 through G15</span></div>
+  <p class="small">The title points to pairing correction with the other "when wrong" and "over time" guidelines, numbers 9 through 15. The page doesn't list them, so check the toolkit for the full set.</p>
+  <div class="mock">
+    <div class="flow">
+      <span class="step">G9</span><span class="arrow">…</span><span class="step">G15</span>
+    </div>
+    <p class="hint">A correction is most useful when it's also remembered, explained and learned from. This reading is my own.</p>
+  </div>
+</div>
+
+<div class="card" style="grid-column:1/-1">
+  <div class="ptitle"><span class="pnum">9E</span><span class="big" style="margin:0">Batch-editing data</span></div>
+  <p class="small">If the AI made the same mistake many times, fix many items in one go.</p>
+  <div class="mock">
+    <table id="tbl">
+      <tr><th></th><th>Photo</th><th>AI label</th></tr>
+    </table>
+    <div class="toolbar" style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button class="btn" id="bfix" disabled>Change selected to "Cat"</button>
+      <span class="small" id="bcount">Select the rows labelled "Dog" that are really cats.</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<h2>Examples from the page (sketched)</h2>
+<p class="small">The page links examples from Copilot in PowerPoint, Notion, Copilot in Outlook, Copilot in Word, Viva Topics and D365 Customer Service. I didn't open those, and these ideas are my own sketches.</p>
+<div class="grid g2">
+  <div class="card"><p class="big">✍️ Rewrite a selection</p><p class="small">Highlight one sentence of an AI draft and ask for a change, leaving the rest untouched.</p></div>
+  <div class="card"><p class="big">🏷️ Fix a wrong topic tag</p><p class="small">Switch a mis-detected topic to the right one, or remove it.</p></div>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/support-efficient-correction/">Microsoft HAX Toolkit – Guideline 9</a>. All mockups are original illustrations. Pattern explanations are my interpretation of their titles.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+// route
+$('avoid').onclick=()=>{
+  $('routeB').setAttribute('d','M20 160 L110 150 L200 120 L280 30');
+  $('hB').textContent="Rerouted around the roadwork. Start and end stayed the same.";
+};
+$('resetB').onclick=()=>{ $('routeB').setAttribute('d','M20 160 L150 60 L280 30'); $('hB').textContent="Tap the area to avoid. Only that segment changes."; };
+$('redo').onclick=()=>{ $('hA').textContent="Recalculated… same route again. No way to say what's wrong."; };
+// classification
+document.querySelectorAll('#clsChips .chip').forEach(c=>c.onclick=()=>{
+  document.querySelectorAll('#clsChips .chip').forEach(x=>x.classList.remove('on'));
+  c.classList.add('on'); $('cls').textContent=c.textContent;
+});
+// undo
+$('auto').onclick=()=>{
+  $('mail').textContent='📥 3 emails auto-moved to "Promotions"';
+  $('undoArea').innerHTML='<div class="toast"><span>3 emails moved</span><button id="undo">Undo</button></div>';
+  $('undo').onclick=()=>{ $('mail').textContent='↩️ Moved back to Inbox'; $('undoArea').innerHTML=''; };
+};
+// batch
+const rows=[["🐶","Dog",false],["🐱","Dog",true],["🐶","Dog",false],["🐱","Dog",true],["🐱","Cat",false]];
+function draw(){
+  const t=$('tbl'); t.innerHTML='<tr><th></th><th>Photo</th><th>AI label</th></tr>';
+  rows.forEach((r,i)=>{
+    const tr=document.createElement('tr'); if(r.sel) tr.className='sel';
+    tr.innerHTML=`<td><input type="checkbox" ${r.sel?'checked':''}></td><td>${r[0]}</td><td>${r[1]}</td>`;
+    tr.querySelector('input').onchange=e=>{r.sel=e.target.checked;draw();};
+    t.appendChild(tr);
+  });
+  const n=rows.filter(r=>r.sel).length;
+  $('bfix').disabled=!n;
+  $('bcount').textContent=n?`${n} selected`:'Select the rows labelled "Dog" that are really cats.';
+}
+$('bfix').onclick=()=>{rows.forEach(r=>{if(r.sel){r[1]="Cat";r.sel=false}});draw();};
+draw();
+</script>
+</body>
+</html>

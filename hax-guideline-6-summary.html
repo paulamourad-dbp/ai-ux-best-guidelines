@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 6 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.ico{font-size:26px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ba{grid-template-columns:1fr}}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin-top:10px}
+.flow .step{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px}
+.flow .step b{display:block;margin:4px 0}
+.flow .step.hit{border-color:var(--warn);background:var(--warn-soft)}
+.arrow{align-self:center;color:var(--muted)}
+.bars{margin-top:10px}
+.brow{display:grid;grid-template-columns:90px 1fr 48px;gap:10px;align-items:center;font-size:14px;margin:8px 0}
+.track{height:16px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;border-radius:99px;background:var(--brand);transition:width .4s,background .3s}
+.track i.low{background:var(--bad)}
+.gapnote{padding:8px 12px;border-radius:10px;font-size:14px;margin-top:10px}
+.cb{display:flex;align-items:center;gap:10px;padding:8px 4px;border-bottom:1px solid var(--line);font-size:14px;cursor:pointer}
+.cb:last-child{border-bottom:0}
+.cb input{width:18px;height:18px}
+.cb.done span{text-decoration:line-through;color:var(--muted)}
+.prog{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:10px}
+.prog i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 6 · "During interaction"</span>
+<h1>Mitigate social biases</h1>
+<p class="lead">Make sure your AI's language and behavior don't reinforce unfair stereotypes.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">Societal biases can sneak into AI systems through many routes. Treat this guideline as a reminder to <b>plan for identifying, testing and mitigating fairness harms</b>.</p>
+</div>
+
+<h2>How bias gets in</h2>
+<div class="card">
+  <p class="small">The page names these routes. Click a step to see an illustration.</p>
+  <div class="flow" id="flow">
+    <div class="step" data-i="0"><span>📥</span><b>Data collection</b><span class="small">What's gathered, and who's missing</span></div>
+    <div class="step" data-i="1"><span>🏋️</span><b>Training &amp; testing</b><span class="small">How models are built and checked</span></div>
+    <div class="step" data-i="2"><span>🧑‍🤝‍🧑</span><b>Assumptions about people</b><span class="small">Who we think will use or be affected</span></div>
+    <div class="step" data-i="3"><span>➕</span><b>…and more</b><span class="small">The page says "and more"</span></div>
+  </div>
+  <div class="mock" id="routeEx"></div>
+</div>
+
+<h2>Try it: find the performance gap</h2>
+<div class="card">
+  <p class="big">Average accuracy can hide unfair gaps</p>
+  <p class="small">The page mentions tools like <b>Error Analysis</b> and <b>Fairlearn</b> that help investigate performance disparities across groups. Here's a toy version with made-up numbers.</p>
+  <div class="seg" id="view">
+    <button class="on" data-v="avg">Overall only</button>
+    <button data-v="groups">Break down by group</button>
+    <button data-v="fixed">After mitigation</button>
+  </div>
+  <div class="bars" id="bars"></div>
+  <div class="gapnote" id="gapnote"></div>
+  <p class="hint">Illustrative data. Groups are generic placeholders, not real measurements.</p>
+</div>
+
+<h2>Examples from the page (sketched)</h2>
+<p class="small">The page lists Bing Search, Siri, MyAnalytics and Android. These are my own simplified, neutral sketches of the idea, not screenshots.</p>
+<div class="grid g2">
+
+<div class="card">
+  <p class="big">🔎 Search results: varied, not stereotyped</p>
+  <p class="small">A search for a profession should show a range of people, not one narrow default.</p>
+  <div class="ba">
+    <div><span class="pill bad">Narrow defaults</span><div class="mock" style="text-align:center;font-size:24px">🧑‍⚕️🧑‍⚕️🧑‍⚕️🧑‍⚕️</div></div>
+    <div><span class="pill good">Representative</span><div class="mock" style="text-align:center;font-size:24px">👩‍⚕️👨🏾‍⚕️🧑🏻‍⚕️👩🏽‍⚕️</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">🎙️ Voice assistant: neutral by default</p>
+  <p class="small">Avoid assuming gender or role from a request.</p>
+  <div class="mock">
+    <div class="bubble"><span class="pill bad">Assumes</span> "Sure, honey! I'll add flowers to your shopping list."</div>
+    <div class="bubble"><span class="pill good">Neutral</span> "Sure. Added flowers to your shopping list."</div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">📈 Workplace analytics: fair signals</p>
+  <p class="small">Insights shouldn't penalise people for patterns that differ by group, such as working hours.</p>
+  <div class="mock">
+    <div class="bubble">⚠️ Check: does this "engagement score" rank some groups lower for reasons unrelated to the work?</div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">📱 Translation: avoid defaulting pronouns</p>
+  <p class="small">When a source language has no gender, show options instead of guessing.</p>
+  <div class="mock">
+    <div class="bubble">"They are a doctor."</div>
+    <div class="bubble" style="background:var(--good-soft)">Options: <b>she is a doctor</b> · <b>he is a doctor</b> · <b>they are a doctor</b></div>
+  </div>
+</div>
+
+</div>
+
+<h2>A fairness checklist (my suggestion)</h2>
+<div class="card">
+  <p class="small">The page says to "plan for identifying, testing, and mitigating". This checklist is my own way of turning that into steps. Tick them off.</p>
+  <div id="chk">
+    <label class="cb"><input type="checkbox"><span>Identify: who might be affected, including people not in the room?</span></label>
+    <label class="cb"><input type="checkbox"><span>Test: measure performance separately for each group</span></label>
+    <label class="cb"><input type="checkbox"><span>Investigate: look at where and why the gaps appear</span></label>
+    <label class="cb"><input type="checkbox"><span>Mitigate: fix data, model, or design, then re-test</span></label>
+  </div>
+  <div class="prog"><i id="prog"></i></div>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/mitigate-social-biases/">Microsoft HAX Toolkit – Guideline 6</a>. All mockups and numbers are original illustrations. The checklist and the specific route examples are my own, not text from the page.
+</footer>
+</div>
+
+<script>
+// Routes
+const R=[
+ {t:"Data collection",h:"A voice dataset recorded mostly from one region or age group.",r:"Fewer samples for others → the AI hears them less well."},
+ {t:"Training & testing",h:"The model is only tested on average accuracy.",r:"Poor results for a smaller group stay invisible."},
+ {t:"Assumptions about people",h:"Designers assume every user has the same needs, language or abilities.",r:"The product works well for 'default' users and worse for everyone else."},
+ {t:"…and more",h:"The page notes biases enter by several routes, beyond those listed here.",r:"That's why planning and testing is ongoing."}
+];
+function route(i){
+  document.querySelectorAll('#flow .step').forEach((s,j)=>s.classList.toggle('hit',i===j));
+  const x=R[i];
+  document.getElementById('routeEx').innerHTML=`<div class="bubble"><b>${x.t}</b></div><div class="bubble">Example: ${x.h}</div><div class="bubble" style="background:var(--warn-soft)">Effect: ${x.r}</div>`;
+}
+document.querySelectorAll('#flow .step').forEach(s=>s.onclick=()=>route(+s.dataset.i));
+route(0);
+
+// Gap chart
+const D={
+ avg:[["Everyone",86]],
+ groups:[["Group A",94],["Group B",90],["Group C",72],["Group D",84]],
+ fixed:[["Group A",91],["Group B",90],["Group C",88],["Group D",89]]
+};
+const N={
+ avg:["info","Looks great: 86% accurate overall. But who is behind that average?"],
+ groups:["bad","Gap found: Group C gets 72% while Group A gets 94%. The average hid a 22-point difference."],
+ fixed:["good","After improving data and re-testing, the groups are much closer (88–91%)."]
+};
+function show(v){
+  document.getElementById('bars').innerHTML=D[v].map(([n,p])=>`<div class="brow"><span>${n}</span><div class="track"><i class="${p<80?'low':''}" style="width:${p}%"></i></div><b>${p}%</b></div>`).join('');
+  const g=document.getElementById('gapnote'); g.className='gapnote '+N[v][0]; g.textContent=N[v][1];
+}
+document.querySelectorAll('#view button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#view button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); show(b.dataset.v);
+});
+show('avg');
+
+// checklist
+const cbs=document.querySelectorAll('#chk input');
+cbs.forEach(c=>c.onchange=()=>{
+  c.parentElement.classList.toggle('done',c.checked);
+  document.getElementById('prog').style.width=([...cbs].filter(x=>x.checked).length/cbs.length*100)+'%';
+});
+</script>
+</body>
+</html>

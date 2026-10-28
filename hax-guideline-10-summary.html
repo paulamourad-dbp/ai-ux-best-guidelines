@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 10 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.bubble.user{background:var(--brand-soft);border-color:transparent;margin-left:28px}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:5px 12px;border-radius:99px;font:inherit;font-size:13px;cursor:pointer}
+.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ba{grid-template-columns:1fr}}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.ptitle{display:flex;gap:10px;align-items:center}
+.pnum{background:var(--brand);color:#fff;border-radius:8px;font-weight:700;padding:2px 9px;font-size:14px}
+.meter{height:12px;border-radius:99px;background:linear-gradient(90deg,var(--bad),var(--warn),var(--good));position:relative;margin:10px 0 4px}
+.meter i{position:absolute;top:-4px;width:4px;height:20px;border-radius:2px;background:var(--ink);transition:left .3s}
+.row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.ladder{display:grid;gap:8px;margin-top:10px}
+.rung{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px;background:var(--card);opacity:.5;transition:.2s}
+.rung.on{opacity:1;border-color:var(--brand);background:var(--brand-soft)}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:8px}
+.pick{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 6px;text-align:center;font-size:13px;cursor:pointer}
+.pick.on{border-color:var(--brand);background:var(--brand-soft)}
+.pick .e{font-size:24px;display:block}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.flow .step{background:var(--brand-soft);color:var(--brand);padding:7px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.arrow{color:var(--muted)}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 10 · "When wrong"</span>
+<h1>Scope services when in doubt</h1>
+<p class="lead">When the AI isn't sure what you want, doing less (or asking) beats guessing.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">In ambiguous situations, <b>less can be more</b>. When uncertain about the user's goal, the AI should <b>disambiguate</b> (ask) or <b>gracefully degrade</b> its services. To do that, build it so it can <b>compute its own uncertainty</b>.</p>
+  <p class="small">Example from the page: an assistant that calls people on demand isn't sure whom to call. Asking "Do you mean Bill G. or Bill C.?" costs less than calling the wrong person.</p>
+</div>
+
+<h2>Try it: "Call Bill"</h2>
+<div class="card">
+  <p class="small">Contacts: <b>Bill G.</b> and <b>Bill C.</b> Say the request, and compare how two assistants handle uncertainty.</p>
+  <div class="seg" id="req">
+    <button class="on" data-r="amb">"Call Bill"</button>
+    <button data-r="clear">"Call Bill G."</button>
+  </div>
+  <div class="ba">
+    <div>
+      <span class="pill bad">Always guesses</span>
+      <div class="mock" id="guess"></div>
+    </div>
+    <div>
+      <span class="pill good">Scopes when in doubt</span>
+      <div class="mock" id="scope"></div>
+    </div>
+  </div>
+  <p class="small" style="margin-top:12px">Uncertainty level the assistant computed:</p>
+  <div class="meter"><i id="unc"></i></div>
+  <div class="row"><span>Very unsure</span><span>Very sure</span></div>
+</div>
+
+<h2>The three patterns</h2>
+<p class="small">The page lists these by title only. The demos are my own interpretation of the names.</p>
+<div class="grid g2">
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">10A</span><span class="big" style="margin:0">Disambiguate before acting</span></div>
+  <p class="small">Ask a quick question before doing something hard to undo.</p>
+  <div class="mock">
+    <div class="bubble user">Send the file to Alex.</div>
+    <div class="bubble">Which Alex?</div>
+    <div class="cards3">
+      <button class="pick" id="a1"><span class="e">👩</span>Alex M. (Design)</button>
+      <button class="pick" id="a2"><span class="e">🧑</span>Alex R. (Finance)</button>
+    </div>
+    <div class="bubble" id="aOut" style="display:none"></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">10B</span><span class="big" style="margin:0">Avoid cold starts by eliciting preferences</span></div>
+  <p class="small">With no history, the AI can't guess well. Ask a few easy questions up front.</p>
+  <div class="mock">
+    <div class="bubble"><b>Pick a few things you like</b></div>
+    <div id="prefs" style="display:flex;gap:6px;flex-wrap:wrap">
+      <button class="chip">🎸 Rock</button><button class="chip">🎻 Classical</button><button class="chip">🎤 Pop</button><button class="chip">🎷 Jazz</button><button class="chip">🎧 Electronic</button>
+    </div>
+    <div class="bubble" id="prefOut" style="margin-top:10px">Nothing picked yet, so the first recommendations will be generic.</div>
+  </div>
+</div>
+
+<div class="card" style="grid-column:1/-1">
+  <div class="ptitle"><span class="pnum">10C</span><span class="big" style="margin:0">Fall back to other strategies</span></div>
+  <p class="small">When the main approach fails or is too uncertain, drop to a simpler one rather than failing outright. Slide the confidence down:</p>
+  <input type="range" id="conf" min="0" max="100" value="90" style="width:100%">
+  <div class="ladder" id="ladder">
+    <div class="rung" data-min="75">🤖 <b>Full automation</b>: the AI answers directly</div>
+    <div class="rung" data-min="40">❓ <b>Ask a clarifying question</b>: narrows the request</div>
+    <div class="rung" data-min="15">📋 <b>Show a short list of options</b>: user chooses</div>
+    <div class="rung" data-min="0">🧑 <b>Hand off</b>: link to a human or manual search</div>
+  </div>
+  <p class="hint">My own illustration of "degrade gracefully". Real systems pick thresholds from testing.</p>
+</div>
+
+</div>
+
+<h2>Examples from the page (sketched)</h2>
+<p class="small">The page links examples from Copilot in PowerPoint, Copilot in Word, GitHub Copilot, Box Skills, a chatbot (Kommunicate), Apple Music, Microsoft News and iPhone. I didn't open them. These are my own sketches of the ideas.</p>
+<div class="grid g2">
+  <div class="card"><p class="big">🎵 Music app onboarding</p><p class="small">New user? Ask for favorite artists first, then recommend.</p></div>
+  <div class="card"><p class="big">💬 Support chatbot</p><p class="small">If it can't understand, offer common topics or a human agent instead of "I don't understand" repeated.</p></div>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/scope-services-when-in-doubt/">Microsoft HAX Toolkit – Guideline 10</a>. All mockups are original illustrations. Pattern explanations are my interpretation of their titles.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+// Call Bill
+const S={
+ amb:{u:15,g:`<div class="bubble user">Call Bill.</div><div class="bubble">📞 Calling Bill C.… (wrong person)</div><div class="small">Guessed, and it's wrong half the time.</div>`,
+      s:`<div class="bubble user">Call Bill.</div><div class="bubble">Do you mean <b>Bill G.</b> or <b>Bill C.</b>?</div><div style="display:flex;gap:6px"><button class="btn ghost">Bill G.</button><button class="btn ghost">Bill C.</button></div>`},
+ clear:{u:92,g:`<div class="bubble user">Call Bill G.</div><div class="bubble">📞 Calling Bill G.…</div>`,
+      s:`<div class="bubble user">Call Bill G.</div><div class="bubble">📞 Calling Bill G.…</div><div class="small">Clear request: no extra question.</div>`}
+};
+function showReq(k){ $('guess').innerHTML=S[k].g; $('scope').innerHTML=S[k].s; $('unc').style.left=S[k].u+'%'; }
+document.querySelectorAll('#req button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#req button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); showReq(b.dataset.r);
+});
+showReq('amb');
+// 10A
+['a1','a2'].forEach((id,i)=>$(id).onclick=()=>{
+  document.querySelectorAll('#a1,#a2').forEach(x=>x.classList.remove('on')); $(id).classList.add('on');
+  $('aOut').style.display='block'; $('aOut').textContent='✅ Sent to '+(i?'Alex R.':'Alex M.')+'.';
+});
+// 10B
+document.querySelectorAll('#prefs .chip').forEach(c=>c.onclick=()=>{
+  c.classList.toggle('on');
+  const on=[...document.querySelectorAll('#prefs .chip.on')].map(x=>x.textContent.replace(/^\S+\s/,''));
+  $('prefOut').textContent = on.length ? 'Starting recommendations: '+on.join(', ')+' playlists.' : 'Nothing picked yet, so the first recommendations will be generic.';
+});
+// 10C
+function ladder(){
+  const v=+$('conf').value; let active=null;
+  document.querySelectorAll('#ladder .rung').forEach(r=>{ if(active===null && v>=+r.dataset.min){active=r} r.classList.remove('on'); });
+  if(active) active.classList.add('on');
+}
+$('conf').oninput=ladder; ladder();
+</script>
+</body>
+</html>

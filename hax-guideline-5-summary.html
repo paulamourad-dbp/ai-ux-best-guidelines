@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 5 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.ico{font-size:26px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.bubble.user{background:var(--brand-soft);border-color:transparent;margin-left:28px}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ba{grid-template-columns:1fr}}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.avatars{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.avatars span{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:var(--card);border:1px solid var(--line)}
+.dial{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin-top:8px}
+.dial input{flex:1}
+.stat{display:flex;gap:12px;align-items:center}
+.stat .n{font-size:30px;font-weight:700;color:var(--brand)}
+.blind{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.blind div{flex:1;min-width:110px;text-align:center;border-radius:12px;padding:10px;background:var(--card);border:1px solid var(--line);font-size:13px}
+.blind .eye{font-size:24px}
+.blind .gap{opacity:.35;border-style:dashed}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 5 · "During interaction"</span>
+<h1>Match relevant social norms</h1>
+<p class="lead">Deliver your AI's behavior and presentation the way people expect, given their social and cultural context.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">An AI's <b>services, behaviors and presentation</b> should follow social and cultural norms. And norms vary across groups and cultures, so there's no single "right" style.</p>
+  <p class="small">Example from the page: an informal tone can feel friendly in the United States and impolite in more formal cultures.</p>
+</div>
+
+<h2>Try it: one message, different norms</h2>
+<div class="card">
+  <p class="small">The same assistant tells a user their order is delayed. Pick a context and see how the tone should shift. These are illustrative, since real norms vary a lot even within a country.</p>
+  <div class="seg" id="ctx">
+    <button class="on" data-c="casual">😎 Casual, friendly</button>
+    <button data-c="formal">🎩 Formal, professional</button>
+    <button data-c="sensitive">🕊️ Sensitive topic</button>
+  </div>
+  <div class="ba">
+    <div>
+      <span class="pill bad">One-size-fits-all</span>
+      <div class="mock">
+        <div class="bubble">Hey there! 👋 Bummer, your order's running late. Hang tight, we'll get it to ya ASAP!!</div>
+      </div>
+      <p class="hint">Same tone everywhere. Charming to some, jarring to others.</p>
+    </div>
+    <div>
+      <span class="pill good">Norm-aware</span>
+      <div class="mock"><div class="bubble" id="msg"></div></div>
+      <p class="hint" id="why"></p>
+    </div>
+  </div>
+</div>
+
+<h2>What can "norms" cover?</h2>
+<div class="grid g2">
+  <div class="card"><div class="ico">🗣️</div><p class="big">Tone and politeness</p><p class="small">Informal vs formal, first-name vs titles, directness vs softening.</p></div>
+  <div class="card"><div class="ico">🎨</div><p class="big">Presentation</p><p class="small">Colors, icons, gestures and imagery can carry different meanings across cultures.</p></div>
+  <div class="card"><div class="ico">🤝</div><p class="big">Behavior</p><p class="small">When the AI speaks up, how it asks for things, how it handles personal topics.</p></div>
+  <div class="card"><div class="ico">👥</div><p class="big">Who is represented</p><p class="small">Whose names, faces, holidays and experiences show up as "normal".</p></div>
+</div>
+<p class="small">The page states the tone example directly. The other categories are my own suggestions for what "norms" can include.</p>
+
+<h2>Examples from the page (sketched)</h2>
+<p class="small">The page lists Copilot in PowerPoint, Word, Cortana and Google Photos. These are my own simplified sketches of the idea, not screenshots.</p>
+<div class="grid g2">
+
+<div class="card">
+  <p class="big">🖼️ Photo memories: be thoughtful</p>
+  <p class="small">An auto-made "memory" should avoid resurfacing moments people may not want to revisit, and let them adjust it.</p>
+  <div class="mock">
+    <div class="bubble">🎞️ <b>Your memories</b></div>
+    <div class="bubble" style="background:var(--good-soft)">Summer trip, 2024</div>
+    <div class="bubble" style="display:flex;justify-content:space-between;gap:8px"><span>Don't want to see this person or date?</span><b style="color:var(--brand)">Hide</b></div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">🎙️ Voice assistant: polite, not pushy</p>
+  <p class="small">Personality follows what's expected, with courtesy and no assumptions about the user.</p>
+  <div class="mock">
+    <div class="bubble user">Set a reminder for the 5 pm call.</div>
+    <div class="bubble">Of course. Reminder set for 5 pm.</div>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">📊 Slide generator: neutral, respectful content</p>
+  <p class="small">Suggested images and wording should suit a broad, professional audience.</p>
+  <div class="mock">
+    <div class="avatars"><span>👩‍💼</span><span>👨🏾‍💻</span><span>🧕</span><span>👴</span><span>🧑‍🦽</span></div>
+    <p class="hint">Suggested visuals reflect a range of people, not a single default.</p>
+  </div>
+</div>
+
+<div class="card">
+  <p class="big">✍️ Writing assistant: register control</p>
+  <p class="small">Let people choose the tone that fits their audience.</p>
+  <div class="mock">
+    <div class="seg"><button>Casual</button><button class="on">Neutral</button><button>Formal</button></div>
+    <div class="bubble">Thank you for your message. I'll reply by Friday.</div>
+  </div>
+</div>
+
+</div>
+
+<h2>Diversity helps cover blind spots</h2>
+<div class="card">
+  <div class="stat"><div class="ico">🔍</div><div>
+    <p class="big" style="margin:0">The page's practical advice</p>
+    <p class="small">Studies show that adding diversity, such as in <b>teams</b>, <b>data</b> and <b>user research participants</b>, helps cover each other's blind spots.</p></div></div>
+  <div class="blind">
+    <div><div class="eye">🙂</div>Person A<br>notices tone</div>
+    <div><div class="eye">🧐</div>Person B<br>notices imagery</div>
+    <div><div class="eye">🤔</div>Person C<br>notices language</div>
+    <div class="gap"><div class="eye">❓</div>Blind spot<br>(a homogeneous team misses this)</div>
+  </div>
+  <p class="hint">More varied perspectives means fewer unseen gaps. This illustration is mine, not from the page.</p>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/match-relevant-social-norms/">Microsoft HAX Toolkit – Guideline 5</a>. All mockups are original illustrations. Tone examples are simplified and shouldn't be read as claims about any specific culture.
+</footer>
+</div>
+
+<script>
+const C={
+ casual:{m:"Hey! 👋 Quick heads-up: your order's running a bit late. We're on it and it should reach you tomorrow.",w:"Friendly, relaxed tone with a light emoji."},
+ formal:{m:"Good afternoon. We regret to inform you that your order has been delayed. Delivery is now expected tomorrow. Please accept our apologies.",w:"Polite, structured, no slang or emoji. Fits more formal settings."},
+ sensitive:{m:"We're sorry, your order is delayed. If this causes any difficulty, we're happy to help. Delivery is now expected tomorrow.",w:"Calm and gentle, with an offer of support and no jokes."}
+};
+function render(k){document.getElementById('msg').textContent=C[k].m;document.getElementById('why').textContent=C[k].w}
+document.querySelectorAll('#ctx button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#ctx button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); render(b.dataset.c);
+});
+render('casual');
+</script>
+</body>
+</html>
