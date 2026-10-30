@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 17 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.ba{grid-template-columns:1fr}}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+.set{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 14px}
+.toggle{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.toggle:last-child{border-bottom:0}
+.toggle small{display:block;color:var(--muted);font-size:12px}
+.sw{width:40px;height:23px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;border:0;padding:0;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;transition:left .2s}
+.sw.on{background:var(--good)} .sw.on::after{left:20px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+.seg button{border:0;background:transparent;color:var(--ink);padding:5px 10px;font:inherit;font-size:12px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.phone{border:2px solid var(--line);border-radius:22px;background:var(--card);padding:12px;min-height:300px}
+.phone .notch{width:50px;height:5px;background:var(--line);border-radius:9px;margin:0 auto 10px}
+.feed{display:grid;gap:8px}
+.post{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;background:var(--bg);transition:.3s}
+.post.hide{display:none}
+.post.mapped{background:var(--brand-soft)}
+.post .meta{color:var(--muted);font-size:11px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tags span{font-size:11px;padding:2px 8px;border-radius:99px;background:var(--card);border:1px solid var(--line)}
+.ptitle{display:flex;gap:10px;align-items:center}
+.pnum{background:var(--brand);color:#fff;border-radius:8px;font-weight:700;padding:2px 9px;font-size:14px;flex:none}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.callout{border-left:4px solid var(--brand);background:var(--brand-soft);border-radius:10px;padding:12px 14px;font-size:14px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 17 · "Over time"</span>
+<h1>Provide global controls</h1>
+<p class="lead">Let people set, in one place, what the AI watches and how it behaves everywhere.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">Let users <b>globally customize what the AI system monitors and how it behaves</b>, with preferences that apply <b>system-wide</b>.</p>
+  <p class="small">Examples from the page: turning on parental controls in a search engine (controlling behavior), or restricting a smartphone app from accessing location (controlling what information it collects).</p>
+</div>
+
+<h2>Two kinds of global control</h2>
+<div class="cols">
+  <div class="card"><div style="font-size:26px">🎚️</div><p class="big">How it behaves</p><p class="small">AI settings or parameters, like parental controls or content filters.</p></div>
+  <div class="card"><div style="font-size:26px">👁️</div><p class="big">What it monitors or collects</p><p class="small">Data access, like location, activity history or contacts.</p></div>
+</div>
+<p class="small" style="margin-top:8px">These two groups come directly from the page's two examples. The names are my own shorthand.</p>
+
+<h2>Try it: a settings panel that changes the whole app</h2>
+<div class="card">
+  <p class="small">Flip the global switches on the left and watch the app on the right respond everywhere, not just on one screen.</p>
+  <div class="two">
+    <div>
+      <div class="set" id="set">
+        <div class="toggle"><div>🔒 Safe search<small>Behavior: hide adult content</small></div><button class="sw on" data-k="safe"></button></div>
+        <div class="toggle"><div>📍 Use my location<small>Monitoring: nearby results</small></div><button class="sw on" data-k="loc"></button></div>
+        <div class="toggle"><div>🧠 Personalize from my history<small>Monitoring: learns from activity</small></div><button class="sw on" data-k="pers"></button></div>
+        <div class="toggle"><div>🗣️ Tone<small>Behavior: how the AI writes</small></div><div class="seg" id="tone"><button class="on" data-t="friendly">Friendly</button><button data-t="formal">Formal</button></div></div>
+      </div>
+      <p class="hint">Toggle the switches. Nothing here is saved or sent anywhere.</p>
+    </div>
+    <div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="feed" id="feed"></div>
+        <div class="tags" id="tags"></div>
+      </div>
+    </div>
+  </div>
+  <p class="hint">Made-up demo content.</p>
+</div>
+
+<h2>Why "global"?</h2>
+<div class="card">
+  <div class="ba">
+    <div>
+      <span class="pill bad">Scattered per-screen settings</span>
+      <div class="mock">
+        <div class="bubble">Search: <button class="sw" style="vertical-align:middle"></button> location</div>
+        <div class="bubble">Maps: <button class="sw on" style="vertical-align:middle"></button> location</div>
+        <div class="bubble">Photos: <button class="sw on" style="vertical-align:middle"></button> location</div>
+      </div>
+      <p class="hint">Easy to miss one. Hard to trust.</p>
+    </div>
+    <div>
+      <span class="pill good">One global setting</span>
+      <div class="mock">
+        <div class="bubble"><b>Location access</b> <button class="sw" style="vertical-align:middle;margin-left:8px"></button><br><span class="small">Applies to Search, Maps and Photos.</span></div>
+      </div>
+      <p class="hint">One decision, applied everywhere. My own illustration of the "system-wide" idea.</p>
+    </div>
+  </div>
+</div>
+
+<h2>Design tips (my suggestions)</h2>
+<p class="small">The page itself is short. These are my own practical notes, not text from the page.</p>
+<div class="grid g2">
+  <div class="card"><p class="big">🔎 Make them findable</p><p class="small">A clearly named Settings area, linked from where the AI acts.</p></div>
+  <div class="card"><p class="big">🗣️ Use plain language</p><p class="small">Say what a switch does in everyday words, and what changes when it's off.</p></div>
+  <div class="card"><p class="big">↩️ Make them reversible</p><p class="small">Easy to turn back on or reset to defaults.</p></div>
+  <div class="card"><p class="big">🔗 Pair with other guidelines</p><p class="small">Guidelines 3 and 4 (context-based timing and information) both suggest pairing with global controls.</p></div>
+</div>
+
+<h2>Examples listed on the page</h2>
+<div class="card">
+  <p class="small">The page links examples from Hugging Chat, Windows Copilot, Outlook, Microsoft Word, Google Photos and Bing Search. I didn't open them, and the demo above is my own illustration.</p>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/provide-global-controls/">Microsoft HAX Toolkit – Guideline 17</a>. The parental-controls and location examples are from the page. Everything else is an original, made-up illustration.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const S={safe:true,loc:true,pers:true,tone:'friendly'};
+const posts=[
+ {t:{friendly:"Hey! Try this crispy tofu recipe 🍜",formal:"Recommended: a tofu recipe."},m:"Cooking",k:"pers"},
+ {t:{friendly:"Coffee shops near you ☕",formal:"Cafés in your vicinity."},m:"Nearby",k:"loc"},
+ {t:{friendly:"Fun fact of the day!",formal:"Daily briefing item."},m:"General",k:null},
+ {t:{friendly:"Mature-rated movie trailer",formal:"Trailer: mature-rated film."},m:"Entertainment · 18+",k:"adult"},
+ {t:{friendly:"More running shoes you might like 👟",formal:"Running shoes, based on your history."},m:"Shopping",k:"pers"}
+];
+function draw(){
+  $('feed').innerHTML=posts.map(p=>{
+    let hide=false;
+    if(p.k==='adult'&&S.safe) hide=true;
+    if(p.k==='loc'&&!S.loc) hide=true;
+    if(p.k==='pers'&&!S.pers) hide=true;
+    return `<div class="post ${hide?'hide':''}">${p.t[S.tone]}<div class="meta">${p.m}</div></div>`;
+  }).join('');
+  const tags=[];
+  tags.push(S.safe?'🔒 Safe search on':'🔓 Safe search off');
+  tags.push(S.loc?'📍 Location used':'📍 Location off');
+  tags.push(S.pers?'🧠 Personalized':'🧠 Not personalized');
+  $('tags').innerHTML=tags.map(t=>`<span>${t}</span>`).join('');
+}
+document.querySelectorAll('#set .sw').forEach(b=>b.onclick=()=>{
+  b.classList.toggle('on'); S[b.dataset.k]=b.classList.contains('on'); draw();
+});
+document.querySelectorAll('#tone button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#tone button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); S.tone=b.dataset.t; draw();
+});
+document.querySelectorAll('.mock .sw').forEach(b=>{ if(!b.dataset.k) b.onclick=()=>b.classList.toggle('on'); });
+draw();
+</script>
+</body>
+</html>

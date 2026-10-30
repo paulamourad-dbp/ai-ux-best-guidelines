@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 15 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.ic{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:3px 9px;font:inherit;font-size:15px;cursor:pointer}
+.ic:hover{border-color:var(--brand);background:var(--brand-soft)}
+.ic.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.ptitle{display:flex;gap:10px;align-items:center}
+.pnum{background:var(--brand);color:#fff;border-radius:8px;font-weight:700;padding:2px 9px;font-size:14px;flex:none}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.ba{grid-template-columns:1fr}}
+.rec{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;font-size:14px;transition:.3s}
+.rec .l{display:flex;gap:10px;align-items:center}
+.rec .em{font-size:24px}
+.rec small{display:block;color:var(--muted)}
+.rec.liked{background:var(--good-soft)}
+.rec.disliked{opacity:.4}
+.stars{display:flex;gap:2px}
+.stars button{border:0;background:transparent;font-size:18px;cursor:pointer;padding:0 1px;filter:grayscale(1);opacity:.5}
+.stars button.on{filter:none;opacity:1}
+.shelf{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:4px 11px;border-radius:99px;font:inherit;font-size:12px;cursor:pointer}
+.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.thanks{margin-top:8px;font-size:13px;color:var(--good);min-height:18px}
+.menu{display:none;border:1px solid var(--line);background:var(--card);border-radius:10px;margin-top:6px;overflow:hidden}
+.menu.open{display:block}
+.menu div{padding:8px 12px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--line)}
+.menu div:last-child{border-bottom:0}
+.menu div:hover{background:var(--brand-soft)}
+.blur{filter:blur(5px);user-select:none}
+.loop{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.loop .step{background:var(--brand-soft);color:var(--brand);padding:7px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.arrow{color:var(--muted)}
+.bar{display:grid;grid-template-columns:100px 1fr 40px;gap:10px;align-items:center;font-size:13px;margin:7px 0}
+.track{height:12px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .35s}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 15 · "Over time"</span>
+<h1>Encourage granular feedback</h1>
+<p class="lead">Give people easy ways to tell the AI what they like and what's wrong, right in the flow of using it.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">Let users give <b>explicit feedback on outputs and behaviors</b> during normal use, so they can <b>steer how the AI evolves</b>. Feedback also helps <b>monitor that the system is working as intended</b>.</p>
+  <p class="small">Example from the page: an entertainment service that recommends content gives users controls to guide it toward what they're really interested in, for instance by encouraging them to rate each recommendation.</p>
+</div>
+
+<h2>Try it: steer the recommendations</h2>
+<div class="card">
+  <p class="small">Give a 👍 or 👎 to each recommendation and watch the next ones change. This mirrors the page's example.</p>
+  <div class="ba">
+    <div>
+      <span class="pill bad">No feedback controls</span>
+      <div class="mock" id="plain"></div>
+      <p class="hint">Nothing to click. The AI can only guess.</p>
+    </div>
+    <div>
+      <span class="pill good">Granular feedback</span>
+      <div class="mock" id="fb"></div>
+      <p class="hint" id="fbHint">React to each item to teach it your taste.</p>
+    </div>
+  </div>
+  <div style="margin-top:12px"><button class="btn ghost" id="reset">↻ Reset demo</button></div>
+  <p class="hint">Toy example with made-up titles and a simple scoring rule.</p>
+</div>
+
+<h2>What the AI has learned from your feedback</h2>
+<div class="card">
+  <div class="bar"><span>🚀 Sci-fi</span><div class="track"><i id="b1" style="width:50%"></i></div><b id="v1">50%</b></div>
+  <div class="bar"><span>🍳 Cooking</span><div class="track"><i id="b2" style="width:50%"></i></div><b id="v2">50%</b></div>
+  <div class="bar"><span>⚽ Sports</span><div class="track"><i id="b3" style="width:50%"></i></div><b id="v3">50%</b></div>
+  <p class="hint">Each rating nudges a topic up or down. Also made-up.</p>
+</div>
+
+<h2>The four patterns</h2>
+<p class="small">The page lists these by title only. The demos are my own interpretation of the names.</p>
+<div class="grid g2">
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">15A</span><span class="big" style="margin:0">Explicit feedback on individual outputs</span></div>
+  <p class="small">A rating control on each result.</p>
+  <div class="mock">
+    <div class="bubble">Summary of your meeting notes…</div>
+    <div style="display:flex;gap:6px;align-items:center"><button class="ic" id="up">👍</button><button class="ic" id="down">👎</button><span class="small" id="a-out">Was this helpful?</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">15B</span><span class="big" style="margin:0">Request feedback on selected outputs</span></div>
+  <p class="small">Don't ask every time. Ask on a few, at a good moment.</p>
+  <div class="mock">
+    <div class="bubble">Here's your weekly plan.</div>
+    <div class="bubble" style="background:var(--brand-soft);border-color:transparent">One quick question: how accurate was this? <span class="stars" id="stars" style="display:inline-flex;vertical-align:middle"><button>⭐</button><button>⭐</button><button>⭐</button><button>⭐</button><button>⭐</button></span></div>
+    <p class="hint">Asked only occasionally, to avoid feedback fatigue. My own note.</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">15C</span><span class="big" style="margin:0">Reporting inappropriate content</span></div>
+  <p class="small">An easy "report" path for harmful or wrong outputs.</p>
+  <div class="mock">
+    <div class="bubble"><span class="blur">An inappropriate AI-generated reply</span>
+      <div style="text-align:right"><button class="ic" id="dots">⋯</button></div>
+    </div>
+    <div class="menu" id="menu">
+      <div data-r="Offensive">🚫 Offensive or harmful</div>
+      <div data-r="Inaccurate">❌ Inaccurate</div>
+      <div data-r="Other">💬 Something else</div>
+    </div>
+    <div class="thanks" id="rep"></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">15D</span><span class="big" style="margin:0">Use existing public rating or interaction data</span></div>
+  <p class="small">Learn from signals that already exist, such as likes, public ratings and shares, without asking for extra effort.</p>
+  <div class="mock">
+    <div class="bubble"><b>Article: "10 tips for focus"</b></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:13px"><span>❤️ 1.2k likes</span><span>🔁 340 shares</span><span>⭐ 4.6 avg</span></div>
+    <p class="hint">These public signals become feedback for the system. Used carefully and with respect for privacy. My note.</p>
+  </div>
+</div>
+
+</div>
+
+<h2>Feedback closes the loop</h2>
+<div class="card">
+  <div class="loop">
+    <span class="step">🤖 AI gives an output</span><span class="arrow">→</span>
+    <span class="step">👍👎 User gives feedback</span><span class="arrow">→</span>
+    <span class="step">📈 AI improves &amp; team monitors quality</span>
+  </div>
+  <p class="small" style="margin-top:12px">The page names both goals: letting users steer the AI, and helping the team confirm the system works as intended.</p>
+</div>
+
+<h2>Examples listed on the page</h2>
+<div class="card">
+  <p class="small">The page links examples from Copilot in Excel, Viva Topics, Word Online, Contoso, Facebook, Twitter and Instagram. I didn't open them, and the mockups above are my own illustrations.</p>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/encourage-granular-feedback/">Microsoft HAX Toolkit – Guideline 15</a>. The recommendation-rating idea is from the page. Titles, numbers and pattern explanations are original, made-up illustrations.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const items=[
+ {t:"Deep Space",s:"Sci-fi documentary",e:"🚀",c:0},
+ {t:"Pasta in 15",s:"Cooking show",e:"🍳",c:1},
+ {t:"Final Whistle",s:"Sports highlights",e:"⚽",c:2},
+ {t:"Mars Colony",s:"Sci-fi series",e:"🛸",c:0},
+ {t:"Street Food Tour",s:"Cooking travel",e:"🥘",c:1},
+ {t:"Derby Day",s:"Sports drama",e:"🏟️",c:2}
+];
+let score,rated;
+function init(){score=[50,50,50];rated={};draw();}
+function drawPlain(){
+  $('plain').innerHTML=items.slice(0,3).map(i=>`<div class="rec"><div class="l"><span class="em">${i.e}</span><div>${i.t}<small>${i.s}</small></div></div></div>`).join('');
+}
+function draw(){
+  drawPlain();
+  const list=[...items].filter(i=>!rated[i.t]||rated[i.t]==='up').sort((a,b)=>score[b.c]-score[a.c]);
+  $('fb').innerHTML=list.slice(0,3).map(i=>`<div class="rec ${rated[i.t]==='up'?'liked':''}"><div class="l"><span class="em">${i.e}</span><div>${i.t}<small>${i.s}</small></div></div><div><button class="ic ${rated[i.t]==='up'?'on':''}" data-t="${i.t}" data-v="up">👍</button> <button class="ic" data-t="${i.t}" data-v="down">👎</button></div></div>`).join('');
+  [1,2,3].forEach((n,k)=>{$('b'+n).style.width=score[k]+'%';$('v'+n).textContent=score[k]+'%'});
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('#fb .ic'); if(!b) return;
+  const it=items.find(i=>i.t===b.dataset.t); const up=b.dataset.v==='up';
+  rated[it.t]=b.dataset.v; score[it.c]=Math.max(5,Math.min(95,score[it.c]+(up?15:-20)));
+  $('fbHint').textContent=up?`Noted. More like "${it.s}" coming up.`:`Got it. Showing less of "${it.s}".`;
+  draw();
+});
+$('reset').onclick=()=>{ $('fbHint').textContent='React to each item to teach it your taste.'; init(); };
+init();
+// 15A
+['up','down'].forEach(id=>$(id).onclick=()=>{
+  $('up').classList.toggle('on',id==='up'); $('down').classList.toggle('on',id==='down');
+  $('a-out').textContent=id==='up'?'Thanks! Glad it helped.':'Thanks. What went wrong?';
+});
+// 15B
+document.querySelectorAll('#stars button').forEach((b,i,all)=>b.onclick=()=>all.forEach((x,j)=>x.classList.toggle('on',j<=i)));
+// 15C
+$('dots').onclick=()=>$('menu').classList.toggle('open');
+document.querySelectorAll('#menu div').forEach(d=>d.onclick=()=>{
+  $('menu').classList.remove('open'); $('rep').textContent='✔ Reported as "'+d.dataset.r+'". Thanks for helping keep this safe.';
+});
+</script>
+</body>
+</html>

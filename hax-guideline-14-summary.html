@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 14 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.ba{grid-template-columns:1fr}}
+.ptitle{display:flex;gap:10px;align-items:center}
+.pnum{background:var(--brand);color:#fff;border-radius:8px;font-weight:700;padding:2px 9px;font-size:14px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.app{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.app .top{display:flex;gap:6px;padding:8px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);justify-content:space-between}
+.app .body{padding:12px;display:grid;gap:8px;min-height:130px}
+.blk{border-radius:8px;padding:8px 10px;font-size:13px;background:var(--bg);border:1px solid var(--line);transition:.3s}
+.blk.new{background:var(--brand-soft);border-color:var(--brand)}
+.blk.moved{outline:2px dashed var(--warn)}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav span{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:3px 9px;font-size:12px}
+.nav span.new{background:var(--brand-soft);border-color:var(--brand)}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.steps div{flex:1;min-width:120px;text-align:center;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--card);font-size:13px}
+.steps div.on{background:var(--brand-soft);border-color:var(--brand)}
+.steps b{display:block;font-size:20px}
+.meter{height:12px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;background:var(--brand);transition:width .4s,background .3s}
+.row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:8px}
+.rate{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px}
+.callout{border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:10px;padding:12px 14px;font-size:14px}
+.table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.table th,.table td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left}
+.table th{color:var(--muted);font-weight:600;font-size:12px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 14 · "Over time"</span>
+<h1>Update and adapt cautiously</h1>
+<p class="lead">When the AI changes, keep the disruption small. Don't break what already works for people.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">Limit <b>disruptive changes</b> when updating or adapting an AI's behavior. Think about the <b>scale</b> and <b>rate</b> of change, and use <b>user research</b> to learn how changes may disrupt or impede people.</p>
+</div>
+
+<h2>The model-update trap</h2>
+<div class="card">
+  <div class="callout">⚠️ When updating a model, <b>avoid introducing new errors for tasks it previously did well</b>. The page suggests tools such as <b>Backward Compatibility</b> to check for this.</div>
+  <p class="small" style="margin-top:14px">Illustration with made-up numbers: a new model improves on average but breaks something that used to work.</p>
+  <div class="mock">
+    <table class="table">
+      <tr><th>Task</th><th>Old model</th><th>New model</th><th></th></tr>
+      <tr><td>Spelling fixes</td><td>96%</td><td>97%</td><td><span class="pill good">better</span></td></tr>
+      <tr><td>Date formats</td><td>90%</td><td>94%</td><td><span class="pill good">better</span></td></tr>
+      <tr><td>Names with accents</td><td>93%</td><td>81%</td><td><span class="pill bad">regressed</span></td></tr>
+    </table>
+    <p class="hint">Average went up, yet people who relied on accented names now get new mistakes. A backward-compatibility check surfaces this before release.</p>
+  </div>
+</div>
+
+<h2>Try it: ship a big change vs. a gentle one</h2>
+<div class="card">
+  <p class="small">An app's AI assistant gets updated. Compare how a sudden overhaul and a gradual rollout feel to the user.</p>
+  <div class="seg" id="modes">
+    <button class="on" data-m="big">💥 Overhaul at once</button>
+    <button data-m="gentle">🌱 Gradual rollout</button>
+  </div>
+  <div class="ba">
+    <div>
+      <span class="pill info">Before</span>
+      <div class="app" style="margin-top:6px">
+        <div class="top"><span>My App</span><span>v1</span></div>
+        <div class="body">
+          <div class="nav"><span>Home</span><span>Search</span><span>Help</span></div>
+          <div class="blk">🤖 Assistant: bottom right</div>
+          <div class="blk">📋 Suggestions: sidebar</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="pill" id="afterPill">After</span>
+      <div class="app" style="margin-top:6px">
+        <div class="top"><span>My App</span><span id="ver">v2</span></div>
+        <div class="body" id="afterBody"></div>
+      </div>
+    </div>
+  </div>
+  <div id="gStep" style="display:none">
+    <div class="steps" id="steps">
+      <div data-s="1"><b>1</b>Week 1<br>New suggestion</div>
+      <div data-s="2"><b>2</b>Week 3<br>Faster search</div>
+      <div data-s="3"><b>3</b>Week 6<br>New layout (opt-in)</div>
+    </div>
+    <div style="margin-top:10px"><button class="btn" id="nextStep">Roll out next step →</button> <button class="btn ghost" id="restart">↻ Restart</button></div>
+  </div>
+  <div class="row"><span>User disruption</span><span id="dtxt">High</span></div>
+  <div class="meter"><i id="dm" style="width:85%;background:var(--bad)"></i></div>
+  <p class="hint" id="why"></p>
+</div>
+
+<h2>The two patterns</h2>
+<p class="small">The page lists these two by title only. The explanations below are my interpretation of the names.</p>
+<div class="grid g2">
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">14A</span><span class="big" style="margin:0">Comprehensive updates</span></div>
+  <p class="small">Bigger changes, delivered thoughtfully as one considered package, with notice and explanation.</p>
+  <div class="mock">
+    <div class="bubble">🎉 <b>What's new in v2</b><br>Smarter replies, a new layout, and a faster assistant.</div>
+    <div style="display:flex;gap:6px"><button class="btn">Take the tour</button><button class="btn ghost">Maybe later</button></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">14B</span><span class="big" style="margin:0">Immediate, partial, non-disruptive updates</span></div>
+  <p class="small">Small improvements that appear right away and don't get in the way.</p>
+  <div class="mock">
+    <div class="bubble" style="display:flex;justify-content:space-between;gap:8px"><span>Search results are now a bit more relevant</span><span class="pill good">quietly improved</span></div>
+    <p class="hint">No tour needed. Nothing moves, nothing breaks.</p>
+  </div>
+</div>
+
+</div>
+
+<h2>Think about scale and rate</h2>
+<div class="card">
+  <p class="small">The page asks you to consider both. Move the sliders to see a rough "disruption" score. This is my own toy model.</p>
+  <div class="rate">
+    <div><div class="small"><b>Scale</b>: how big each change is</div><input type="range" id="scale" min="1" max="10" value="7" style="width:100%"></div>
+    <div><div class="small"><b>Rate</b>: how often changes ship</div><input type="range" id="rate" min="1" max="10" value="6" style="width:100%"></div>
+  </div>
+  <div class="row"><span>Estimated disruption</span><span id="score">42 / 100</span></div>
+  <div class="meter"><i id="sm" style="width:42%"></i></div>
+  <p class="hint">Toy formula: scale × rate. Real disruption must be learned from user research, as the page recommends.</p>
+</div>
+
+<h2>Examples listed on the page</h2>
+<div class="card">
+  <p class="small">The page links examples from Google Search, Spotify (for 14B) and YouTube, Facebook (for 14A). I didn't open them, and the mockups above are my own illustrations.</p>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/update-and-adapt-cautiously/">Microsoft HAX Toolkit – Guideline 14</a>. Mockups and numbers are original, made-up illustrations. Pattern explanations are my interpretation of their titles.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let mode='big', step=0;
+function renderAfter(){
+  const b=$('afterBody');
+  if(mode==='big'){
+    $('ver').textContent='v2';
+    b.innerHTML=`<div class="nav"><span class="new">Discover</span><span class="new">Create</span><span class="new">Profile</span></div>
+    <div class="blk new moved">🤖 Assistant: now top-left, new name</div>
+    <div class="blk new moved">📋 Suggestions: now a pop-up</div>`;
+    $('dm').style.width='85%'; $('dm').style.background='var(--bad)'; $('dtxt').textContent='High';
+    $('why').textContent='Everything changed at once. People have to re-learn the app, and anything that used to work may have moved.';
+    $('gStep').style.display='none';
+  } else {
+    $('ver').textContent='v1.'+step;
+    b.innerHTML=`<div class="nav"><span>Home</span><span class="${step>=2?'new':''}">Search${step>=2?' ⚡':''}</span><span>Help</span></div>
+    <div class="blk">🤖 Assistant: bottom right</div>
+    <div class="blk ${step>=1?'new':''}">📋 Suggestions: sidebar${step>=1?' + a new "Tips" row':''}</div>
+    ${step>=3?'<div class="blk new">✨ Try the new layout? <u>Opt in</u> / keep the old one</div>':''}`;
+    const lvl=[10,25,35,45][step];
+    $('dm').style.width=lvl+'%'; $('dm').style.background=lvl<40?'var(--good)':'var(--warn)';
+    $('dtxt').textContent=lvl<30?'Low':'Moderate';
+    $('why').textContent=['Nothing changed yet.','One small addition. Existing habits still work.','Search got faster in place. No relearning.','Bigger change offered as an opt-in, and the old layout is still there.'][step];
+    $('gStep').style.display='block';
+    document.querySelectorAll('#steps div').forEach(d=>d.classList.toggle('on',+d.dataset.s<=step&&step>0));
+    $('nextStep').disabled=step>=3;
+  }
+}
+document.querySelectorAll('#modes button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#modes button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  mode=b.dataset.m; step=0; renderAfter();
+});
+$('nextStep').onclick=()=>{ if(step<3){step++;renderAfter();} };
+$('restart').onclick=()=>{ step=0; renderAfter(); };
+renderAfter();
+function sc(){
+  const s=+$('scale').value, r=+$('rate').value; const v=Math.round(s*r);
+  $('score').textContent=v+' / 100'; const m=$('sm'); m.style.width=v+'%';
+  m.style.background=v<30?'var(--good)':v<60?'var(--warn)':'var(--bad)';
+}
+$('scale').oninput=sc; $('rate').oninput=sc; sc();
+</script>
+</body>
+</html>

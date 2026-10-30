@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 18 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.ba{grid-template-columns:1fr}}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.app{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.app .top{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid var(--line);font-size:13px;position:relative}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--bad);display:inline-block;margin-left:6px}
+.app .body{padding:12px;display:grid;gap:8px;min-height:150px}
+.blk{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;background:var(--bg)}
+.banner{background:var(--brand-soft);border-radius:10px;padding:10px 12px;font-size:13px;animation:pop .3s}
+@keyframes pop{from{transform:translateY(-5px);opacity:0}to{transform:none;opacity:1}}
+.bar{display:grid;grid-template-columns:140px 1fr 56px;gap:10px;align-items:center;font-size:13px;margin:8px 0}
+.track{height:12px;border-radius:99px;background:var(--line);overflow:hidden;position:relative}
+.track i{display:block;height:100%;border-radius:99px}
+.track .old{background:var(--muted);opacity:.5;position:absolute;left:0;top:0}
+.track .new{background:var(--brand);position:absolute;left:0;top:0;opacity:.9}
+.track .new.neg{background:var(--bad)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--muted);flex-wrap:wrap;margin-top:6px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;background:var(--c)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.flow .step{background:var(--brand-soft);color:var(--brand);padding:7px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.arrow{color:var(--muted)}
+.callout{border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:10px;padding:12px 14px;font-size:14px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 18 · "Over time"</span>
+<h1>Notify users about changes</h1>
+<p class="lead">When the AI gets new or improved abilities, tell people so they can adjust what they expect from it.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0"><b>Inform the user when the AI adds or updates its capabilities.</b> After major model updates, people may need to <b>recalibrate their expectations</b>, both of what the system can do (Guideline 1) and how well it does it (Guideline 2).</p>
+  <p class="small">Example from the page: a fitness tracker that originally struggled with hills and stairs gets better at them. Telling users helps them make the best use of it.</p>
+</div>
+
+<h2>Try it: the page's fitness-tracker example</h2>
+<div class="card">
+  <p class="small">The tracker's model just improved at hills and stairs. Compare a silent update with one that tells you.</p>
+  <div class="seg" id="mode">
+    <button class="on" data-m="silent">🤐 Silent update</button>
+    <button data-m="notify">📣 Notify about the change</button>
+  </div>
+  <div class="app">
+    <div class="top"><span><b>StepBuddy</b></span><span id="bell">🔔<i class="dot" id="dot" style="display:none"></i></span></div>
+    <div class="body" id="appBody"></div>
+  </div>
+  <p class="hint" id="why"></p>
+  <p class="hint">Made-up app and numbers, based on the page's example.</p>
+</div>
+
+<h2>Why it helps: recalibrating trust</h2>
+<div class="card">
+  <p class="small">Toy numbers showing what a user believes versus what's actually true after the update.</p>
+  <div class="seg" id="know">
+    <button class="on" data-k="no">User wasn't told</button>
+    <button data-k="yes">User was notified</button>
+  </div>
+  <div class="bar"><span>🚶 Flat walking</span><div class="track"><i class="old" id="o1"></i><i class="new" id="n1"></i></div><b id="t1"></b></div>
+  <div class="bar"><span>⛰️ Hills &amp; stairs</span><div class="track"><i class="old" id="o2"></i><i class="new" id="n2"></i></div><b id="t2"></b></div>
+  <div class="legend"><span style="--c:var(--muted)">What the user expects</span><span style="--c:var(--brand)">How well it really works now</span></div>
+  <p class="hint" id="knowMsg"></p>
+</div>
+
+<h2>The caution: updates can also make things worse</h2>
+<div class="callout">⚠️ The page notes that <b>some model updates can degrade performance in some areas even if overall performance improves</b>. Use tools like <b>Backward Compatibility</b> to check for new errors. And if a change does reduce quality somewhere, that's another reason to tell users.</div>
+<div class="card" style="margin-top:12px">
+  <p class="small">Illustration with made-up numbers:</p>
+  <div class="grid g2">
+    <div class="mock"><span class="pill good">Improved</span><div class="bubble">⛰️ Hills &amp; stairs: 70% → 90%</div></div>
+    <div class="mock"><span class="pill bad">Got worse</span><div class="bubble">🏊 Swimming laps: 88% → 76%</div></div>
+  </div>
+  <p class="hint">Honest notes name both. The swimming dip is something users should know about.</p>
+</div>
+
+<h2>What a good change notice includes</h2>
+<p class="small">The page gives one example and no patterns. This is my own checklist for turning the idea into a message.</p>
+<div class="card">
+  <div class="grid g2">
+    <div class="bubble"><b>1. What changed</b><br>"Step counting on hills and stairs is more accurate."</div>
+    <div class="bubble"><b>2. How it affects you</b><br>"You may notice higher step counts on hilly walks."</div>
+    <div class="bubble"><b>3. What still doesn't work</b><br>"Cycling is still not supported."</div>
+    <div class="bubble"><b>4. Where to learn more</b><br>"See What's new."</div>
+  </div>
+  <div class="flow" style="margin-top:14px">
+    <span class="step">🛠️ Update ships</span><span class="arrow">→</span><span class="step">📣 User is told</span><span class="arrow">→</span><span class="step">🎯 Expectations recalibrate</span>
+  </div>
+</div>
+
+<h2>Examples listed on the page</h2>
+<div class="card">
+  <p class="small">The page links two examples: Office What's New and Outlook Web. I didn't open them, and the mockups above are my own illustrations.</p>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/notify-users-about-changes/">Microsoft HAX Toolkit – Guideline 18</a>. The fitness-tracker and performance-degradation points are from the page. App content, numbers and the checklist are original, made-up illustrations.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function renderApp(m){
+  const b=$('appBody');
+  if(m==='silent'){
+    $('dot').style.display='none';
+    b.innerHTML=`<div class="blk">🚶 Today: 8,420 steps</div><div class="blk">⛰️ Hill hike: 3,110 steps</div><div class="blk" style="color:var(--muted)">(No mention that hill counting changed.)</div>`;
+    $('why').textContent='The user still thinks hill counts are unreliable. They may keep ignoring a feature that now works, or be confused by sudden number changes.';
+  } else {
+    $('dot').style.display='inline-block';
+    b.innerHTML=`<div class="banner">🎉 <b>What's new:</b> Steps on hills and stairs are now counted more accurately.<br><u>See details</u> · <u>Dismiss</u></div><div class="blk">🚶 Today: 8,420 steps</div><div class="blk">⛰️ Hill hike: 3,110 steps ✔ improved</div>`;
+    $('why').textContent='The user understands why numbers changed and can now trust the tracker on hills.';
+  }
+}
+document.querySelectorAll('#mode button').forEach(x=>x.onclick=()=>{
+  document.querySelectorAll('#mode button').forEach(y=>y.classList.remove('on')); x.classList.add('on'); renderApp(x.dataset.m);
+});
+renderApp('silent');
+// recalibration
+const real=[95,90];
+function bars(k){
+  const exp = k==='yes' ? [95,90] : [95,55];
+  [[ 'o1','n1','t1'],['o2','n2','t2']].forEach((ids,i)=>{
+    $(ids[0]).style.width=exp[i]+'%'; $(ids[1]).style.width=real[i]+'%';
+    $(ids[2]).textContent=(exp[i]===real[i])?'✔ match':(exp[i]<real[i]?'under-trust':'over-trust');
+  });
+  $('knowMsg').textContent = k==='yes' ? 'With a notice, expectation and reality line up, so the user relies on it appropriately.' : 'Without a notice, the user still expects poor hill performance (grey bar), but it\'s actually good (blue bar). They under-trust a feature that now works.';
+}
+document.querySelectorAll('#know button').forEach(x=>x.onclick=()=>{
+  document.querySelectorAll('#know button').forEach(y=>y.classList.remove('on')); x.classList.add('on'); bars(x.dataset.k);
+});
+bars('no');
+</script>
+</body>
+</html>

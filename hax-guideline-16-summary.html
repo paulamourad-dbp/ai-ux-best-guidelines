@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 16 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.ba{grid-template-columns:1fr}}
+.ptitle{display:flex;gap:10px;align-items:center}
+.pnum{background:var(--brand);color:#fff;border-radius:8px;font-weight:700;padding:2px 9px;font-size:14px;flex:none}
+.photos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.ph{aspect-ratio:1;border-radius:10px;display:grid;place-items:center;font-size:26px;background:var(--card);border:2px solid var(--line);position:relative;transition:.3s}
+.ph.pre{border-color:var(--brand);background:var(--brand-soft)}
+.ph.done{border-color:var(--good);background:var(--good-soft)}
+.ph .lab{position:absolute;bottom:2px;left:0;right:0;text-align:center;font-size:10px;color:var(--muted)}
+.tip{font-size:13px;margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--brand-soft);color:var(--ink);min-height:36px}
+.toast{margin-top:10px;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;font-size:14px;animation:pop .25s}
+@keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}
+.timeline{display:flex;align-items:center;gap:6px;margin:14px 0 4px;flex-wrap:wrap}
+.timeline .n{flex:1;min-width:110px;text-align:center;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--card);font-size:13px}
+.timeline .n.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.timeline .ar{color:var(--muted)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);margin:6px 0}
+.seg button{border:0;background:transparent;color:var(--ink);padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.seg button.on{background:var(--brand);color:#fff}
+.doc{border-left:4px solid var(--brand);background:var(--card);border-radius:8px;padding:10px 12px;font-size:14px}
+.sw{width:38px;height:22px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;border:0;padding:0;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+.sw.on{background:var(--good)} .sw.on::after{left:19px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 16 · "Over time"</span>
+<h1>Convey the consequences of user actions</h1>
+<p class="lead">Show people how what they do will change the AI's future behavior, so they can steer it with confidence.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0"><b>Immediately update or convey</b> how user actions will impact the AI's future behavior. This helps people understand how their actions influence the system, so they interact with it more effectively later.</p>
+  <p class="small">Example from the page: in a photo-tagging app, when a user starts tagging a particular person, show how that input will affect other photos, either before or after they act.</p>
+</div>
+
+<h2>Try it: the page's photo-tagging example</h2>
+<div class="card">
+  <p class="small">Tag one photo as "Maya" and see how a clear AI explains the knock-on effects. Choose when to show the message:</p>
+  <div class="seg" id="when">
+    <button class="on" data-w="before">Before I act (feedforward)</button>
+    <button data-w="after">After I act (feedback)</button>
+    <button data-w="none">Never (silent)</button>
+  </div>
+  <div class="mock">
+    <div class="small">Photo album · hover or tap a photo to tag it as <b>Maya</b></div>
+    <div class="photos" id="photos"></div>
+    <div class="tip" id="tip"></div>
+    <div id="toastArea"></div>
+    <div style="margin-top:10px"><button class="btn ghost" id="reset">↻ Reset</button></div>
+  </div>
+  <p class="hint">Toy simulation. Emoji "photos" and rules are made up.</p>
+</div>
+
+<h2>The four patterns, on a timeline</h2>
+<div class="timeline">
+  <div class="n on">🔮 <b>16A</b><br>Before the action</div><span class="ar">→</span>
+  <div class="n on">⚡ <b>The action</b></div><span class="ar">→</span>
+  <div class="n on">✅ <b>16B</b><br>After the action</div><span class="ar">→</span>
+  <div class="n on">🔁 <b>16C</b><br>Later, remind &amp; reconfirm</div>
+</div>
+<p class="small">16D (help and documentation) sits alongside the timeline as the "always available" reference. This timeline is my own way of arranging the pattern titles.</p>
+
+<p class="small" style="margin-top:14px">The page lists the patterns by title only. The demos below are my interpretation of the names.</p>
+<div class="grid g2">
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">16A</span><span class="big" style="margin:0">Feedforward: before the action</span></div>
+  <p class="small">Tell people what will happen if they proceed.</p>
+  <div class="mock">
+    <div class="bubble">Mute this topic?</div>
+    <div class="doc">Your feed will show fewer posts about <b>"Cars"</b>. You can undo this in settings.</div>
+    <div style="display:flex;gap:6px;margin-top:8px"><button class="btn">Mute</button><button class="btn ghost">Cancel</button></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">16B</span><span class="big" style="margin:0">Feedback: after the action</span></div>
+  <p class="small">Confirm what changed and what it will do going forward.</p>
+  <div class="mock">
+    <button class="btn" id="likeBtn">♥ Like this song</button>
+    <div id="likeOut"></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">16C</span><span class="big" style="margin:0">Remind of a past action &amp; reconfirm</span></div>
+  <p class="small">Later on, check that an earlier choice still reflects what they want.</p>
+  <div class="mock">
+    <div class="bubble">🔔 <b>Still want this?</b><br>Three months ago you let this app use your location in the background.</div>
+    <div style="display:flex;gap:6px"><button class="btn">Keep</button><button class="btn ghost">Change</button></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ptitle"><span class="pnum">16D</span><span class="big" style="margin:0">In help and documentation</span></div>
+  <p class="small">Explain the effects of actions where people look things up.</p>
+  <div class="mock">
+    <div class="bubble"><b>Help: Why does "Not interested" matter?</b></div>
+    <div class="doc">Choosing "Not interested" tells the system to show fewer similar items. It doesn't delete anything you've already saved.</div>
+  </div>
+</div>
+
+</div>
+
+<h2>Why this matters</h2>
+<div class="grid g2">
+  <div class="card"><div style="font-size:26px">🎓</div><p class="big">People learn the rules</p><p class="small">Seeing cause and effect teaches them how to steer the AI.</p></div>
+  <div class="card"><div style="font-size:26px">🛡️</div><p class="big">Fewer surprises</p><p class="small">Nobody is caught off guard when their feed or results change. My own summary of the idea.</p></div>
+</div>
+
+<h2>Examples listed on the page</h2>
+<div class="card">
+  <p class="small">The page links examples from Outlook and Facebook (16A), Gmail and Apple Music (16B), Google Maps and Apple Health (16C), and Instagram and Gmail (16D). I didn't open them, and the mockups above are my own illustrations.</p>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/convey-the-consequences-of-user-actions/">Microsoft HAX Toolkit – Guideline 16</a>. The photo-tagging idea is from the page. Everything else is an original, made-up illustration. Pattern explanations are my interpretation of their titles.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let when='before', tagged=null;
+const faces=['🧑','👩','👩','🧔','👩','🧒','👩','🧑'].slice(0,8);
+// photos 1,4,6 (idx) are the same person (Maya) -> AI will suggest them
+const maya=[1,2,4,6];
+const ph=$('photos');
+function draw(){
+  ph.innerHTML=faces.map((f,i)=>{
+    let cls='ph', lab='';
+    if(tagged!==null && i===tagged){cls+=' done';lab='Maya'}
+    else if(tagged!==null && when!=='none' && maya.includes(i)){cls+=' done';lab='Maya?'}
+    return `<div class="${cls}" data-i="${i}">${f}<span class="lab">${lab}</span></div>`;
+  }).join('');
+  ph.querySelectorAll('.ph').forEach(p=>{
+    const i=+p.dataset.i;
+    p.onmouseenter=()=>{ if(tagged===null && when==='before' && maya.includes(i)){ showPre(i) } };
+    p.onmouseleave=()=>{ if(tagged===null) $('tip').textContent = ''; ph.querySelectorAll('.ph').forEach(x=>x.classList.remove('pre')); };
+    p.onclick=()=>doTag(i);
+  });
+}
+function showPre(i){
+  ph.querySelectorAll('.ph').forEach(x=>{ if(maya.includes(+x.dataset.i)) x.classList.add('pre') });
+  $('tip').textContent='🔮 Tagging this as Maya will also suggest tags on '+(maya.length-1)+' similar photos (highlighted).';
+}
+function doTag(i){
+  if(tagged!==null) return;
+  tagged=i; $('toastArea').innerHTML='';
+  if(when==='after'){
+    $('toastArea').innerHTML='<div class="toast">✅ Tagged as Maya. We\'ve also suggested her on '+(maya.length-1)+' similar photos. Review them any time.</div>';
+    $('tip').textContent='';
+  } else if(when==='before'){
+    $('tip').textContent='Done. As previewed, similar photos now show "Maya?" suggestions.';
+  } else {
+    $('tip').textContent='Tagged. (Silently, so you can\'t tell anything else changed. Later, tags appear and it\'s a surprise.)';
+  }
+  draw();
+}
+function setWhen(w){
+  when=w; tagged=null; $('toastArea').innerHTML='';
+  $('tip').textContent = w==='before' ? 'Hover a photo to preview what tagging will do.' : w==='after' ? 'Tap a photo to tag it as Maya.' : 'Tap a photo to tag it as Maya. No messages will appear.';
+  draw();
+}
+document.querySelectorAll('#when button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#when button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); setWhen(b.dataset.w);
+});
+$('reset').onclick=()=>setWhen(when);
+setWhen('before');
+// 16B
+$('likeBtn').onclick=()=>{ $('likeOut').innerHTML='<div class="toast">♥ Liked. We\'ll play more songs like this in your mixes.</div>'; };
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAX Guideline 13 – Visual Summary</title>
+<style>
+:root{
+  --bg:#f6f7fb; --card:#fff; --ink:#1d2333; --muted:#5c6478; --line:#e2e5ee;
+  --brand:#2f6fed; --brand-soft:#e6eeff; --good:#12a36b; --good-soft:#e2f6ee;
+  --warn:#e08a00; --warn-soft:#fff3dc; --bad:#d6483b; --bad-soft:#fdeae8;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151d;--card:#1b2030;--ink:#eef0f6;--muted:#a3abc0;--line:#2c3348;
+  --brand:#6b9bff;--brand-soft:#223055;--good:#3ccf97;--good-soft:#16352b;
+  --warn:#f4b13e;--warn-soft:#3a2d12;--bad:#ff7a6c;--bad-soft:#3d1c19;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 64px}
+.tag{display:inline-block;background:var(--brand-soft);color:var(--brand);font-weight:600;font-size:13px;padding:4px 10px;border-radius:99px}
+h1{font-size:34px;line-height:1.15;margin:12px 0 8px}
+.lead{color:var(--muted);font-size:18px;margin:0 0 28px}
+h2{font-size:22px;margin:40px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.big{font-size:19px;font-weight:600;margin:0 0 4px}
+.small{font-size:14px;color:var(--muted);margin:4px 0}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600}
+.good{background:var(--good-soft);color:var(--good)} .bad{background:var(--bad-soft);color:var(--bad)} .warn{background:var(--warn-soft);color:var(--warn)} .info{background:var(--brand-soft);color:var(--brand)}
+.mock{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:14px;margin-top:10px}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px;margin:6px 0}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.btn{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--brand)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.ba{grid-template-columns:1fr}}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}
+.flow .step{background:var(--brand-soft);color:var(--brand);padding:7px 12px;border-radius:10px;font-size:14px;font-weight:600}
+.arrow{color:var(--muted)}
+.sug{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;font-size:14px}
+.sug .acts{display:flex;gap:6px;flex-shrink:0}
+.ic{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:3px 9px;font:inherit;font-size:14px;cursor:pointer}
+.ic:hover{border-color:var(--brand);background:var(--brand-soft)}
+.sug.gone{opacity:.35;text-decoration:line-through}
+.bar{display:grid;grid-template-columns:110px 1fr 44px;gap:10px;align-items:center;font-size:13px;margin:7px 0}
+.track{height:12px;border-radius:99px;background:var(--line);overflow:hidden}
+.track i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .35s,background .3s}
+.track i.low{background:var(--bad)}
+.shelf{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;min-width:90px;text-align:center}
+.item .e{font-size:24px;display:block}
+.count{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:13px}
+.count span{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+.toggle{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.toggle:last-child{border-bottom:0}
+.sw{width:38px;height:22px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;border:0;padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+.sw.on{background:var(--good)} .sw.on::after{left:19px}
+footer{margin-top:40px;color:var(--muted);font-size:13px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="tag">Microsoft HAX Toolkit · Guideline 13 · "Over time"</span>
+<h1>Learn from user behavior</h1>
+<p class="lead">Let the AI adapt to each person by learning from what they do, so it gets better over time.</p>
+
+<div class="card">
+  <p class="big">The core idea</p>
+  <p style="margin:6px 0">Use <b>signals from the user</b> to help the AI <b>learn, improve, or personalize</b> its services over time.</p>
+  <p class="small">Example from the page: a writing assistant that learns your preferred style and adapts is better than one that keeps recommending content you've repeatedly dismissed or ignored.</p>
+</div>
+
+<h2>The learning loop</h2>
+<div class="card">
+  <div class="flow">
+    <span class="step">👆 User acts (accept, dismiss, ignore)</span><span class="arrow">→</span>
+    <span class="step">📈 AI picks up the signal</span><span class="arrow">→</span>
+    <span class="step">🎯 Future suggestions fit better</span>
+  </div>
+  <p class="hint">My own simple framing of the guideline's idea. The page names accepting-style signals such as actions, dismissals and ignoring.</p>
+</div>
+
+<h2>Try it: the page's example, side by side</h2>
+<div class="card">
+  <p class="small">A writing assistant offers suggestions. Dismiss the formal ones (✕) or accept the casual ones (✓) a few times and watch each assistant.</p>
+  <div class="ba">
+    <div>
+      <span class="pill bad">Never learns</span>
+      <div class="mock" id="fixed"></div>
+      <p class="hint" id="fixedHint">Keeps suggesting the same kind of thing, however often you dismiss it.</p>
+    </div>
+    <div>
+      <span class="pill good">Learns from behavior</span>
+      <div class="mock" id="learn"></div>
+      <p class="hint" id="learnHint">Starts neutral. It adapts as you react.</p>
+    </div>
+  </div>
+  <div style="margin-top:12px"><button class="btn ghost" id="reset">↻ Reset demo</button></div>
+  <p class="hint">Toy simulation with made-up phrases. Real systems use far richer signals.</p>
+</div>
+
+<h2>What the AI has learned about you</h2>
+<div class="card">
+  <p class="small">The learning assistant's running estimate of your style:</p>
+  <div class="bar"><span>🎩 Formal tone</span><div class="track"><i id="bFormal" style="width:50%"></i></div><b id="vFormal">50%</b></div>
+  <div class="bar"><span>😊 Casual tone</span><div class="track"><i id="bCasual" style="width:50%"></i></div><b id="vCasual">50%</b></div>
+  <div class="count"><span>Accepted: <b id="cAcc">0</b></span><span>Dismissed: <b id="cDis">0</b></span></div>
+</div>
+
+<h2>Other signals the AI could learn from</h2>
+<p class="small">The page gives one example. These are my own suggestions for kinds of signals.</p>
+<div class="grid g2">
+  <div class="card"><p class="big">✅ Explicit actions</p><p class="small">Accepting, editing, rating or choosing an option.</p></div>
+  <div class="card"><p class="big">🙈 Dismissing or ignoring</p><p class="small">Suggestions that are repeatedly skipped are a clue they don't fit.</p></div>
+  <div class="card"><p class="big">🔁 Repeated patterns</p><p class="small">Things you do the same way again and again.</p></div>
+  <div class="card"><p class="big">🛒 Search and browsing</p><p class="small">What you look for and click on, as in the shopping and search examples the page lists.</p></div>
+</div>
+
+<h2>Keep the user in control</h2>
+<div class="card">
+  <p class="small">The page doesn't discuss this, but learning from behavior raises privacy and control questions. This is my own note, and an earlier guideline (G17, global controls) is mentioned elsewhere in the toolkit.</p>
+  <div class="mock">
+    <div class="toggle"><span>🧠 Personalize suggestions based on my activity</span><button class="sw on"></button></div>
+    <div class="toggle"><span>🗑️ Clear what's been learned</span><button class="btn ghost">Reset</button></div>
+  </div>
+</div>
+
+<h2>Examples listed on the page</h2>
+<div class="card">
+  <p class="small">The page links examples from Amazon, Amazon.com and Office Search. I didn't open them, and the demos above are my own illustrations.</p>
+</div>
+
+<footer>
+  Source: <a href="https://www.microsoft.com/en-us/haxtoolkit/guideline/learn-from-user-behavior/">Microsoft HAX Toolkit – Guideline 13</a>. The writing-assistant idea is from the page. Phrases, numbers and the "signals" and "control" sections are my own illustrations.
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const sw=document.querySelector('.sw'); sw.onclick=()=>sw.classList.toggle('on');
+const pool=[
+  {t:"Per my previous message, kindly revisit the attached.",k:"formal"},
+  {t:"Hey, quick one: can you take a look at this?",k:"casual"},
+  {t:"I trust this correspondence finds you well.",k:"formal"},
+  {t:"Thanks so much, that's super helpful!",k:"casual"},
+  {t:"Please be advised that the deadline has been revised.",k:"formal"},
+  {t:"Sounds good, let's catch up tomorrow 🙂",k:"casual"}
+];
+let st;
+function init(){
+  st={formal:50,casual:50,acc:0,dis:0,fixedIdx:0,learnIdx:0,fixedGone:{},learnGone:{}};
+  draw();
+}
+function fixedList(){
+  // never learns: always formal-heavy
+  const f=pool.filter(p=>p.k==="formal");
+  return f.slice(0,3);
+}
+function learnList(){
+  const w=st.casual-st.formal; // >0 prefer casual
+  let list=[...pool].sort((a,b)=>{
+    const sa=(a.k==="casual"?w:-w), sb=(b.k==="casual"?w:-w);
+    return sb-sa;
+  });
+  return list.slice(0,3);
+}
+function row(p,side,i){
+  const gone=(side==='fixed'?st.fixedGone:st.learnGone)[p.t];
+  return `<div class="sug ${gone?'gone':''}"><span>${p.t}</span><span class="acts"><button class="ic" data-s="${side}" data-t="${i}" data-a="ok">✓</button><button class="ic" data-s="${side}" data-t="${i}" data-a="no">✕</button></span></div>`;
+}
+function draw(){
+  const fl=fixedList(), ll=learnList();
+  $('fixed').innerHTML=fl.map((p,i)=>row(p,'fixed',i)).join('');
+  $('learn').innerHTML=ll.map((p,i)=>row(p,'learn',i)).join('');
+  $('bFormal').style.width=st.formal+'%'; $('vFormal').textContent=Math.round(st.formal)+'%';
+  $('bCasual').style.width=st.casual+'%'; $('vCasual').textContent=Math.round(st.casual)+'%';
+  $('bFormal').className=st.formal<35?'low':''; $('bCasual').className=st.casual<35?'low':'';
+  $('cAcc').textContent=st.acc; $('cDis').textContent=st.dis;
+  const lead=ll[0]?.k;
+  $('learnHint').textContent = st.acc+st.dis===0 ? "Starts neutral. It adapts as you react." :
+    (lead==='casual' ? "Learned: casual suggestions now come first." : lead==='formal' ? "Learned: formal suggestions now come first." : "Still adapting…");
+  $('fixedHint').textContent = st.dis>0 ? "Still shows the same formal suggestions, even after dismissals." : "Keeps suggesting the same kind of thing, however often you dismiss it.";
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.ic'); if(!b) return;
+  const side=b.dataset.s, i=+b.dataset.t, a=b.dataset.a;
+  const list=side==='fixed'?fixedList():learnList(); const p=list[i];
+  if(side==='learn'){
+    const d=a==='ok'?8:-8;
+    if(a==='ok'){st.acc++} else {st.dis++}
+    if(p.k==='formal'){st.formal=Math.max(5,Math.min(95,st.formal+d)); st.casual=100-st.formal;}
+    else {st.casual=Math.max(5,Math.min(95,st.casual+d)); st.formal=100-st.casual;}
+  } else { if(a==='ok'){st.acc++} else {st.dis++} }
+  draw();
+});
+$('reset').onclick=init;
+init();
+</script>
+</body>
+</html>
