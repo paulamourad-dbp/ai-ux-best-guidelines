@@ -54,8 +54,15 @@ mark.u{background:var(--warn-soft);color:var(--ink);border-bottom:2px dotted var
 footer{margin-top:40px;color:var(--muted);font-size:13px}
 a{color:var(--brand)}
 </style>
+<style>
+.pn{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;max-width:900px;margin:0 auto;padding:16px}
+.pn a{color:var(--brand);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 16px;font-weight:600;font-size:14px;text-decoration:none}
+.pn a:hover{background:var(--brand-soft)}
+.pn.top{padding-bottom:0}
+</style>
 </head>
 <body>
+<nav class="pn top" aria-label="Guideline navigation"><a href="hax-guideline-1-summary.html">← Previous</a><a href="index.html">All guidelines</a><a href="hax-guideline-3-summary.html">Next →</a></nav>
 <div class="wrap">
 
 <span class="tag">Microsoft HAX Toolkit · Guideline 2 · "Initially"</span>
@@ -195,5 +202,6 @@ document.querySelectorAll('#trust button').forEach(b=>b.onclick=()=>{
   document.getElementById('tmsg').textContent=msgs[v][1];
 });
 </script>
+<nav class="pn" aria-label="Guideline navigation"><a href="hax-guideline-1-summary.html">← Previous</a><a href="index.html">All guidelines</a><a href="hax-guideline-3-summary.html">Next →</a></nav>
 </body>
 </html>
